@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load hifaya_tags service_tags %}
+{% block title %}{% trans "اشتراكاتي | حفاية" %}{% endblock %}
+{% block heading %}{% trans "اشتراكاتي" %}{% endblock %}
+{% block content %}
+<datalist id="service-names">{% service_options %}</datalist>
+<div class="toolbar">
+  <a class="btn" href="{% url 'subscriptions:create' %}">➕ {% trans "إضافة اشتراك" %}</a>
+</div>
+
+<form method="get" class="card filters" aria-label="{% trans 'البحث والتصفية' %}">
+  <div class="form-grid">
+    {% for field in form %}{% include "partials/_field.html" with field=field %}{% endfor %}
+  </div>
+  <div class="toolbar">
+    <button class="btn btn-sm" type="submit">🔍 {% trans "بحث وتصفية" %}</button>
+    <a class="btn btn-outline btn-sm" href="{% url 'subscriptions:list' %}">{% trans "مسح" %}</a>
+  </div>
+</form>
+
+{% if page_obj.object_list %}
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>{% trans "الخدمة" %}</th><th>{% trans "التصنيف" %}</th><th>{% trans "المبلغ" %}</th><th>{% trans "العملة" %}</th><th>{% trans "الدورة" %}</th><th>{% trans "البداية" %}</th>
+        <th>{% trans "التجديد القادم" %}</th><th>{% trans "الحالة" %}</th><th>{% trans "متكرر؟" %}</th><th>{% trans "التذكير" %}</th><th>{% trans "ملاحظات" %}</th><th>{% trans "إجراءات" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for s in page_obj %}
+      <tr>
+        <td>{% service_icon s.service_name %} <a href="{% url 'subscriptions:detail' s.pk %}">{{ s.service_name }}</a></td>
+        <td>{{ s.category.display_name }}</td>
+        <td>{{ s.amount|money:s.currency }}</td>
+        <td>{{ s.currency }}</td>
+        <td>{{ s.get_billing_cycle_display }}</td>
+        <td>{{ s.start_date|date:"Y/m/d" }}</td>
+        <td>{{ s.next_renewal_date|date:"Y/m/d" }}<br><span class="help">{{ s.next_renewal_date|renewal_text }}</span>{% if s.needs_review %} <span class="badge badge-review">{% trans "تحتاج مراجعة" %}</span>{% endif %}</td>
+        <td><span class="badge {{ s.status|badge }}">{{ s.get_status_display }}</span></td>
+        <td>{% if s.is_recurring %}{% trans "نعم" %}{% else %}{% trans "لا" %}{% endif %}</td>
+        <td>{% blocktrans with n=s.reminder_days_before %}قبل {{ n }} يوم{% endblocktrans %}</td>
+        <td>{{ s.notes|truncatechars:30 }}</td>
+        <td class="actions">
+          <a class="btn btn-outline btn-sm" href="{% url 'subscriptions:detail' s.pk %}">{% trans "عرض" %}</a>
+          <a class="btn btn-outline btn-sm" href="{% url 'subscriptions:update' s.pk %}">{% trans "تعديل" %}</a>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% include "partials/_pagination.html" %}
+{% elif has_filters %}
+<div class="card empty"><span class="big" aria-hidden="true">🔎</span><p>{% trans "لا توجد اشتراكات تطابق البحث أو التصفية." %}</p><a class="btn btn-outline" href="{% url 'subscriptions:list' %}">{% trans "مسح التصفية" %}</a></div>
+{% elif has_any %}
+<div class="card empty"><span class="big" aria-hidden="true">📦</span><p>{% trans "كل اشتراكاتك مؤرشفة. اختر «مؤرشف» من فلتر الحالة لعرضها." %}</p></div>
+{% else %}
+<div class="card empty"><span class="big" aria-hidden="true">🌥️</span><p>{% trans "لم تضف أي اشتراك بعد" %}</p><a class="btn" href="{% url 'subscriptions:create' %}">➕ {% trans "أضف اشتراكًا" %}</a></div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load hifaya_tags service_tags %}
+{% block title %}{{ sub.service_name }} | {% trans "حفاية" %}{% endblock %}
+{% block heading %}{% service_icon sub.service_name %} {{ sub.service_name }}{% endblock %}
+{% block content %}
+<div class="toolbar">
+  <a class="btn" href="{% url 'subscriptions:update' sub.pk %}">✏️ {% trans "تعديل" %}</a>
+  <a class="btn btn-success" href="{% url 'payments:create' %}?subscription={{ sub.pk }}">💳 {% trans "تسجيل دفعة" %}</a>
+  {% if sub.status != "archived" %}
+  <form method="post" action="{% url 'subscriptions:archive' sub.pk %}" class="inline-form">{% csrf_token %}<button class="btn btn-outline" type="submit">📦 {% trans "أرشفة" %}</button></form>
+  {% endif %}
+  <a class="btn btn-danger" href="{% url 'subscriptions:delete' sub.pk %}">🗑️ {% trans "حذف" %}</a>
+  <a class="btn btn-outline" href="{% url 'subscriptions:list' %}">{% trans "رجوع للقائمة" %}</a>
+</div>
+
+<div class="grid grid-2 section">
+  <section class="card">
+    <h2>{% trans "التفاصيل" %}</h2>
+    <dl class="details">
+      <dt>{% trans "رقم الاشتراك (للاستيراد JSON)" %}</dt><dd>{{ sub.pk }}</dd>
+      <dt>{% trans "التصنيف" %}</dt><dd>{{ sub.category.display_name }}</dd>
+      <dt>{% trans "المبلغ" %}</dt><dd>{{ sub.amount|money:sub.currency }}</dd>
+      <dt>{% trans "دورة الفوترة" %}</dt><dd>{{ sub.get_billing_cycle_display }}</dd>
+      <dt>{% trans "تاريخ البداية" %}</dt><dd>{{ sub.start_date|date:"Y/m/d" }}</dd>
+      <dt>{% trans "التجديد القادم" %}</dt><dd>{{ sub.next_renewal_date|date:"Y/m/d" }} ({{ sub.next_renewal_date|renewal_text }}){% if sub.needs_review %} <span class="badge badge-review">{% trans "تحتاج مراجعة" %}</span>{% endif %}</dd>
+      <dt>{% trans "الحالة" %}</dt><dd><span class="badge {{ sub.status|badge }}">{{ sub.get_status_display }}</span></dd>
+      <dt>{% trans "متكرر؟" %}</dt><dd>{% if sub.is_recurring %}{% trans "نعم" %}{% else %}{% trans "لا" %}{% endif %}</dd>
+      <dt>{% trans "التذكير" %}</dt><dd>{% blocktrans with n=sub.reminder_days_before %}قبل {{ n }} يوم من التجديد{% endblocktrans %}</dd>
+      <dt>{% trans "ملاحظات" %}</dt><dd>{{ sub.notes|default:"—"|linebreaksbr }}</dd>
+    </dl>
+    <p class="help">{% blocktrans with created=sub.created_at|date:"Y/m/d" updated=sub.updated_at|date:"Y/m/d" %}أُنشئ في {{ created }} · آخر تحديث {{ updated }}{% endblocktrans %}</p>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>{% trans "المدفوعات المرتبطة" %}</h2><a href="{% url 'payments:list' %}?subscription={{ sub.pk }}">{% trans "عرض الكل" %}</a></div>
+    <p>{% trans "إجمالي المدفوع (الدفعات «مدفوعة» فقط):" %} <b>{{ paid.total|money:sub.currency }}</b> — {% trans "عدد الدفعات:" %} {{ paid.count }}</p>
+    {% if payments %}
+    <div class="table-wrap"><table>
+      <thead><tr><th>{% trans "الدفعة" %}</th><th>{% trans "المبلغ" %}</th><th>{% trans "التاريخ" %}</th><th>{% trans "الحالة" %}</th></tr></thead>
+      <tbody>{% for p in payments %}
+        <tr><td><a href="{% url 'payments:detail' p.pk %}">#{{ p.pk }}</a></td><td>{{ p.amount|money:p.currency }}</td><td>{{ p.payment_date|date:"Y/m/d" }}</td><td><span class="badge {{ p.status|badge }}">{{ p.get_status_display }}</span>{% if p.review_required %} <span class="badge badge-review">{% trans "تحتاج مراجعة" %}</span>{% endif %}</td></tr>
+      {% endfor %}</tbody>
+    </table></div>
+    {% else %}<p class="help">{% trans "لا توجد مدفوعات لهذا الاشتراك بعد." %}</p>{% endif %}
+  </section>
+</div>
+
+<section class="card section">
+  <h2>{% trans "إشعارات هذا الاشتراك" %}</h2>
+  {% for n in notifications %}
+    <div class="notice{% if not n.is_read %} unread{% endif %}"><div><b>{{ n.title }}</b><div>{{ n.message }}</div></div><span class="help">{{ n.created_at|date:"Y/m/d H:i" }}</span></div>
+  {% empty %}<p class="help">{% trans "لا توجد إشعارات لهذا الاشتراك." %}</p>{% endfor %}
+</section>
+{% endblock %}

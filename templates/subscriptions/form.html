@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load service_tags %}
+{% block title %}{{ title }} | {% trans "حفاية" %}{% endblock %}
+{% block heading %}{{ title }}{% endblock %}
+{% block content %}
+<datalist id="service-names">{% service_options %}</datalist>
+<form method="post" class="card" novalidate>
+  {% csrf_token %}
+  <p class="help">{% trans "الحقول المعلّمة بـ" %} <span class="req">*</span> {% trans "مطلوبة." %}</p>
+  {% include "partials/_form_fields.html" %}
+  <div class="toolbar">
+    <button class="btn" type="submit">💾 {% trans "حفظ" %}</button>
+    <a class="btn btn-outline" href="{% if is_edit %}{% url 'subscriptions:detail' sub.pk %}{% else %}{% url 'subscriptions:list' %}{% endif %}">{% trans "إلغاء" %}</a>
+  </div>
+</form>
+{% endblock %}
