@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load service_tags %}
+{% block title %}{% trans "الإشعارات | حفاية" %}{% endblock %}
+{% block heading %}{% trans "الإشعارات" %}{% endblock %}
+{% block content %}
+<div class="toolbar">
+  <form method="post" action="{% url 'notifications:check' %}" class="inline-form">{% csrf_token %}<button class="btn" type="submit">🔄 {% trans "تحقق من التذكيرات الآن" %}</button></form>
+  <form method="post" action="{% url 'notifications:read_all' %}" class="inline-form">{% csrf_token %}<button class="btn btn-outline" type="submit">✅ {% trans "تمييز الكل كمقروء" %}</button></form>
+</div>
+<form method="get" class="card filters" aria-label="{% trans 'تصفية الإشعارات' %}">
+  <div class="form-grid">
+    {% for field in form %}{% include "partials/_field.html" with field=field %}{% endfor %}
+  </div>
+  <div class="toolbar">
+    <button class="btn btn-sm" type="submit">🔍 {% trans "تصفية" %}</button>
+    <a class="btn btn-outline btn-sm" href="{% url 'notifications:list' %}">{% trans "مسح" %}</a>
+  </div>
+</form>
+
+{% if page_obj.object_list %}
+  {% for n in page_obj %}
+  <article class="notice{% if not n.is_read %} unread{% endif %}">
+    <div>
+      <b>{{ n.title }}</b>
+      <div>{{ n.message }}</div>
+      <div class="help">
+        {% if n.subscription %}{% trans "الاشتراك:" %} <a href="{% url 'subscriptions:detail' n.subscription.pk %}">{{ n.subscription.service_name }}</a> · {% endif %}
+        {{ n.created_at|date:"Y/m/d H:i" }} · {% if n.is_read %}{% trans "مقروء" %}{% else %}{% trans "غير مقروء" %}{% endif %}
+      </div>
+    </div>
+    {% if not n.is_read %}
+    <form method="post" action="{% url 'notifications:read' n.pk %}" class="inline-form">{% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}"><button class="btn btn-outline btn-sm" type="submit">{% trans "تمييز كمقروء" %}</button></form>
+    {% endif %}
+  </article>
+  {% endfor %}
+  {% include "partials/_pagination.html" %}
+{% elif has_filters %}
+  <div class="card empty"><span class="big" aria-hidden="true">🔎</span><p>{% trans "لا توجد إشعارات تطابق التصفية." %}</p></div>
+{% else %}
+  <div class="card empty"><span class="big" aria-hidden="true">🔕</span><p>{% trans "لا توجد إشعارات حاليًا" %}</p></div>
+{% endif %}
+{% endblock %}
