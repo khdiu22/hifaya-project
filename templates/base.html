@@ -1,0 +1,80 @@
+{% load i18n %}{% load static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" data-theme="{{ theme }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="{{ theme }}">
+  <title>{% block title %} Hifaya{% endblock %}</title>
+  <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <div class="app">
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="scrim" aria-hidden="true"></label>
+
+    <aside class="sidebar">
+      <div class="brand">
+        <img src="{% static 'img/logo.png' %}" alt="{% trans 'شعار حفاية' %}">
+        <div>
+          <b>حفاية</b>
+          <small>Hifaya</small>
+        </div>
+      </div>
+
+      {% include "partials/_nav.html" %}
+
+      <div class="sidebar-foot">
+        🔒 {% trans "بياناتك محمية ومخصّصة لحسابك فقط" %}
+      </div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <div class="topbar-title">
+          <label for="nav-toggle" class="burger" aria-label="{% trans 'القائمة' %}">☰</label>
+          <h1>{% block heading %}{% endblock %}</h1>
+        </div>
+
+        <div class="topbar-actions">
+          <span class="whoami">
+            👤 {{ user.first_name|default:user.username }}{% if user.profile.business_name %} · {{ user.profile.business_name }}{% endif %}
+          </span>
+
+          {% include "partials/_language_switch.html" %}
+          {% include "partials/_theme_toggle.html" %}
+
+          <form method="post" action="{% url 'accounts:logout' %}" class="inline-form">
+            {% csrf_token %}
+            <button class="btn btn-outline btn-sm" type="submit">
+              {% trans "تسجيل الخروج" %}
+            </button>
+          </form>
+        </div>
+      </header>
+
+      <main class="content">
+        {% include "partials/_messages.html" %}
+        {% block content %}{% endblock %}
+      </main>
+
+      <!-- Footer: Hifaya -->
+      <footer class="site-footer">
+        <div class="footer-brand">
+          <img src="{% static 'img/logo.png' %}" alt="{% trans 'شعار حفاية' %}">
+          <strong>حفاية <span>| Hifaya</span></strong>
+        </div>
+
+        <p class="footer-description">
+          {% trans "اشتراكاتك ومدفوعاتك في مكان واحد وتحت حمايتك." %}
+        </p>
+
+        <div class="footer-bottom">
+          {% trans "جميع الحقوق محفوظة" %} © 2026
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

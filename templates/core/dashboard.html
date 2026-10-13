@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load hifaya_tags service_tags %}
+{% block title %}{% trans "لوحة التحكم | حفاية" %}{% endblock %}
+{% block heading %}{% trans "لوحة التحكم" %}{% endblock %}
+{% block content %}
+{% if not stats.total %}
+  <div class="card empty">
+    <span class="big" aria-hidden="true">🌥️</span>
+    <p>{% trans "لم تضف أي اشتراك بعد" %}</p>
+    <a class="btn" href="{% url 'subscriptions:create' %}">➕ {% trans "أضف اشتراكك الأول" %}</a>
+  </div>
+{% else %}
+  <div class="grid grid-4 section">
+    <a class="card stat link-card" href="{% url 'subscriptions:list' %}">
+      <div class="label">{% trans "الاشتراكات النشطة" %}</div>
+      <div class="value">{{ stats.active }}</div>
+      <div class="hint">{% blocktrans with total=stats.total %}من أصل {{ total }} اشتراك{% endblocktrans %}</div>
+    </a>
+    <div class="card stat featured">
+      <div class="label">{% trans "التكلفة الشهرية التقديرية" %}</div>
+      {% for m in monthly_estimates %}<div class="value value-sm">{{ m.amount|money:m.currency }}</div>{% empty %}<div class="value">—</div>{% endfor %}
+      <div class="hint">{% trans "لكل عملة على حدة" %}</div>
+    </div>
+    <a class="card stat link-card" href="{% url 'subscriptions:list' %}?ordering=renewal">
+      <div class="label">{% trans "تتجدد خلال 7 أيام" %}</div>
+      <div class="value">{{ stats.renewing_soon }}</div>
+      <div class="hint">⏳ {% trans "راجعها قبل موعدها" %}</div>
+    </a>
+    <a class="card stat link-card" href="{% url 'subscriptions:list' %}?review=on">
+      <div class="label">{% trans "تحتاج إلى مراجعة" %}</div>
+      <div class="value">{{ stats.needs_review }}</div>
+      <div class="hint">🔎 {% trans "تجديد متأخر وما زالت نشطة" %}</div>
+    </a>
+  </div>
+
+  <div class="grid grid-2 section">
+    <section class="card">
+      <div class="card-head"><h2>{% trans "التجديدات القادمة" %}</h2><a href="{% url 'subscriptions:list' %}">{% trans "عرض الكل" %}</a></div>
+      {% if upcoming %}
+      <div class="table-wrap"><table>
+        <thead><tr><th>{% trans "الخدمة" %}</th><th>{% trans "المبلغ" %}</th><th>{% trans "التجديد" %}</th></tr></thead>
+        <tbody>
+        {% for s in upcoming %}
+          <tr>
+            <td>{% service_icon s.service_name %} <a href="{% url 'subscriptions:detail' s.pk %}">{{ s.service_name }}</a></td>
+            <td>{{ s.amount|money:s.currency }}</td>
+            <td>{{ s.next_renewal_date|date:"Y/m/d" }} <span class="help">({{ s.next_renewal_date|renewal_text }})</span></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table></div>
+      {% else %}<p class="help">{% trans "لا توجد تجديدات قادمة حاليًا." %}</p>{% endif %}
+    </section>
+
+    <section class="card">
+      <div class="card-head"><h2>{% trans "آخر المدفوعات" %}</h2><a href="{% url 'payments:list' %}">{% trans "عرض الكل" %}</a></div>
+      {% if latest_payments %}
+      <div class="table-wrap"><table>
+        <thead><tr><th>{% trans "الدفعة" %}</th><th>{% trans "الاشتراك" %}</th><th>{% trans "المبلغ" %}</th><th>{% trans "التاريخ" %}</th></tr></thead>
+        <tbody>
+        {% for p in latest_payments %}
+          <tr>
+            <td><a href="{% url 'payments:detail' p.pk %}">#{{ p.pk }}</a></td>
+            <td>{{ p.subscription.service_name|default:"—" }}</td>
+            <td>{{ p.amount|money:p.currency }}</td>
+            <td>{{ p.payment_date|date:"Y/m/d" }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table></div>
+      {% else %}<p class="help">{% trans "لا توجد مدفوعات مسجّلة بعد." %} <a href="{% url 'payments:create' %}">{% trans "سجّل دفعة" %}</a></p>{% endif %}
+    </section>
+  </div>
+
+  <section class="card section">
+    <div class="card-head"><h2>{% trans "أحدث الإشعارات" %}</h2><a href="{% url 'notifications:list' %}">{% trans "عرض الكل" %}</a></div>
+    {% for n in latest_notifications %}
+      <div class="notice{% if not n.is_read %} unread{% endif %}">
+        <div><b>{{ n.title }}</b><div>{{ n.message }}</div></div>
+        <span class="help">{{ n.created_at|date:"Y/m/d H:i" }}</span>
+      </div>
+    {% empty %}<p class="help">{% trans "لا توجد إشعارات حاليًا." %}</p>{% endfor %}
+  </section>
+{% endif %}
+{% endblock %}

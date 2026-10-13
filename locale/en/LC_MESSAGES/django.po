@@ -1,0 +1,1238 @@
+# English translations for Hifaya.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the Hifaya project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Hifaya VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-10-11 14:57+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: Hifaya\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "طلب غير صحيح | حفاية"
+msgstr "Invalid request | Hifaya"
+
+msgid "طلب غير صحيح"
+msgstr "Invalid request"
+
+msgid "تعذّر فهم الطلب. حاول مرة أخرى."
+msgstr "The request could not be understood. Please try again."
+
+msgid "العودة للوحة التحكم"
+msgstr "Back to dashboard"
+
+msgid "غير مسموح | حفاية"
+msgstr "Not allowed | Hifaya"
+
+msgid "غير مسموح بهذا الإجراء"
+msgstr "This action is not allowed"
+
+msgid "ليست لديك صلاحية لفتح هذه الصفحة."
+msgstr "You do not have permission to open this page."
+
+msgid "الصفحة غير موجودة | حفاية"
+msgstr "Page not found | Hifaya"
+
+msgid "الصفحة غير موجودة"
+msgstr "Page not found"
+
+msgid "ربما حُذف السجل أو أن الرابط غير صحيح."
+msgstr "The record may have been deleted or the link is incorrect."
+
+msgid "خطأ في الخادم | حفاية"
+msgstr "Server error | Hifaya"
+
+msgid "حدث خطأ غير متوقع"
+msgstr "An unexpected error occurred"
+
+msgid "نعتذر عن ذلك، حاول مرة أخرى بعد قليل."
+msgstr "Sorry about that. Please try again in a moment."
+
+msgid "العودة للرئيسية"
+msgstr "Back to home"
+
+msgid "تسجيل الدخول | حفاية"
+msgstr "Login | Hifaya"
+
+msgid "تسجيل الدخول"
+msgstr "Login"
+
+msgid "دخول"
+msgstr "Log in"
+
+msgid "ما عندك حساب؟"
+msgstr "Don't have an account?"
+
+msgid "أنشئ حسابًا جديدًا"
+msgstr "Create a new account"
+
+msgid "إنشاء حساب | حفاية"
+msgstr "Create account | Hifaya"
+
+msgid "إنشاء حساب جديد"
+msgstr "Create a new account"
+
+msgid "إنشاء الحساب"
+msgstr "Create account"
+
+msgid "عندك حساب؟"
+msgstr "Already have an account?"
+
+msgid "سجّل دخولك"
+msgstr "Log in"
+
+msgid "شعار حفاية"
+msgstr "Hifaya logo"
+
+msgid "بياناتك محمية ومخصّصة لحسابك فقط"
+msgstr "Your data is protected and private to your account"
+
+msgid "القائمة"
+msgstr "Menu"
+
+msgid "تسجيل الخروج"
+msgstr "Log out"
+
+msgid "اشتراكاتك ومدفوعاتك في مكان واحد وتحت حمايتك."
+msgstr "Your subscriptions and payments in one place, under your control."
+
+msgid "جميع الحقوق محفوظة"
+msgstr "All rights reserved"
+
+msgid "اشتراكاتك ومدفوعاتك في مكان واحد وتحت حمايتك"
+msgstr "Your subscriptions and payments in one place, under your control"
+
+msgid "لوحة التحكم | حفاية"
+msgstr "Dashboard | Hifaya"
+
+msgid "لوحة التحكم"
+msgstr "Dashboard"
+
+msgid "لم تضف أي اشتراك بعد"
+msgstr "You haven't added any subscription yet"
+
+msgid "أضف اشتراكك الأول"
+msgstr "Add your first subscription"
+
+msgid "الاشتراكات النشطة"
+msgstr "Active subscriptions"
+
+msgid "التكلفة الشهرية التقديرية"
+msgstr "Estimated monthly cost"
+
+msgid "لكل عملة على حدة"
+msgstr "Per currency"
+
+msgid "تتجدد خلال 7 أيام"
+msgstr "Renewing within 7 days"
+
+msgid "راجعها قبل موعدها"
+msgstr "Review them before the due date"
+
+msgid "تحتاج إلى مراجعة"
+msgstr "Needs review"
+
+msgid "تجديد متأخر وما زالت نشطة"
+msgstr "Renewal overdue and still active"
+
+msgid "التجديدات القادمة"
+msgstr "Upcoming renewals"
+
+msgid "عرض الكل"
+msgstr "View all"
+
+msgid "الخدمة"
+msgstr "Service"
+
+msgid "المبلغ"
+msgstr "Amount"
+
+msgid "التجديد"
+msgstr "Renewal"
+
+msgid "لا توجد تجديدات قادمة حاليًا."
+msgstr "No upcoming renewals right now."
+
+msgid "آخر المدفوعات"
+msgstr "Latest payments"
+
+msgid "الدفعة"
+msgstr "Payment"
+
+msgid "الاشتراك"
+msgstr "Subscription"
+
+msgid "التاريخ"
+msgstr "Date"
+
+msgid "لا توجد مدفوعات مسجّلة بعد."
+msgstr "No payments recorded yet."
+
+msgid "سجّل دفعة"
+msgstr "Record a payment"
+
+msgid "أحدث الإشعارات"
+msgstr "Latest notifications"
+
+msgid "لا توجد إشعارات حاليًا."
+msgstr "No notifications right now."
+
+#, python-format
+msgid "من أصل %(total)s اشتراك"
+msgstr "out of %(total)s subscriptions"
+
+msgid "الإشعارات | حفاية"
+msgstr "Notifications | Hifaya"
+
+msgid "الإشعارات"
+msgstr "Notifications"
+
+msgid "تحقق من التذكيرات الآن"
+msgstr "Check reminders now"
+
+msgid "تمييز الكل كمقروء"
+msgstr "Mark all as read"
+
+msgid "التذكير اليومي التلقائي يحتاج جدولة الأمر"
+msgstr "The automatic daily reminder requires scheduling the command"
+
+msgid "(انظر README). زر «تحقق» ينشئ المستحق لاشتراكاتك فقط."
+msgstr "(see README). The “Check” button creates the due reminders for your subscriptions only."
+
+msgid "تصفية الإشعارات"
+msgstr "Filter notifications"
+
+msgid "تصفية"
+msgstr "Filter"
+
+msgid "مسح"
+msgstr "Clear"
+
+msgid "الاشتراك:"
+msgstr "Subscription:"
+
+msgid "مقروء"
+msgstr "Read"
+
+msgid "غير مقروء"
+msgstr "Unread"
+
+msgid "تمييز كمقروء"
+msgstr "Mark as read"
+
+msgid "لا توجد إشعارات تطابق التصفية."
+msgstr "No notifications match the filter."
+
+msgid "لا توجد إشعارات حاليًا"
+msgstr "No notifications right now"
+
+msgid "إغلاق"
+msgstr "Close"
+
+msgid "القائمة الرئيسية"
+msgstr "Main menu"
+
+msgid "اشتراكاتي"
+msgstr "My subscriptions"
+
+msgid "المدفوعات"
+msgstr "Payments"
+
+msgid "التقارير"
+msgstr "Reports"
+
+#, python-format
+msgid "%(n)s غير مقروء"
+msgstr "%(n)s unread"
+
+msgid "تقسيم الصفحات"
+msgstr "Pagination"
+
+msgid "السابق"
+msgstr "Previous"
+
+msgid "التالي"
+msgstr "Next"
+
+#, python-format
+msgid "صفحة %(number)s من %(pages)s (%(total)s نتيجة)"
+msgstr "Page %(number)s of %(pages)s (%(total)s results)"
+
+msgid "الوضع الداكن"
+msgstr "Dark mode"
+
+msgid "الوضع الفاتح"
+msgstr "Light mode"
+
+msgid "حذف دفعة | حفاية"
+msgstr "Delete payment | Hifaya"
+
+msgid "تأكيد الحذف النهائي"
+msgstr "Confirm permanent deletion"
+
+msgid "ستُحذف الدفعة من سجلك المالي ولا يمكن التراجع. (لا تؤثر على الاشتراك نفسه.)"
+msgstr "The payment will be removed from your financial record and this cannot be undone. (It does not affect the subscription itself.)"
+
+msgid "نعم، احذف نهائيًا"
+msgstr "Yes, delete permanently"
+
+msgid "إلغاء"
+msgstr "Cancel"
+
+#, python-format
+msgid "هل تريد حذف الدفعة #%(pk)s نهائيًا؟"
+msgstr "Do you want to permanently delete payment #%(pk)s?"
+
+msgid "تعديل"
+msgstr "Edit"
+
+msgid "أرشفة"
+msgstr "Archive"
+
+msgid "استعادة"
+msgstr "Restore"
+
+msgid "حذف نهائي"
+msgstr "Delete permanently"
+
+msgid "رجوع للقائمة"
+msgstr "Back to list"
+
+msgid "راجعتها"
+msgstr "I reviewed it"
+
+msgid "الاشتراك المرتبط"
+msgstr "Linked subscription"
+
+msgid "بدون اشتراك محدد"
+msgstr "No specific subscription"
+
+msgid "العملة"
+msgstr "Currency"
+
+msgid "تاريخ الدفع"
+msgstr "Payment date"
+
+msgid "طريقة الدفع"
+msgstr "Payment method"
+
+msgid "مرجع العملية"
+msgstr "Transaction reference"
+
+msgid "الحالة"
+msgstr "Status"
+
+msgid "مؤرشفة"
+msgstr "Archived"
+
+msgid "ملاحظات"
+msgstr "Notes"
+
+msgid "تاريخ التسجيل"
+msgstr "Recorded on"
+
+msgid "الحقول المعلّمة بـ"
+msgstr "Fields marked with"
+
+msgid "مطلوبة. عملة الدفعة يجب أن تطابق عملة الاشتراك المرتبط بها."
+msgstr "are required. The payment currency must match the currency of the linked subscription."
+
+msgid "حفظ"
+msgstr "Save"
+
+msgid "استيراد مدفوعات | حفاية"
+msgstr "Import payments | Hifaya"
+
+msgid "استيراد المدفوعات"
+msgstr "Import payments"
+
+msgid "لم يُحفظ شيء"
+msgstr "Nothing was saved"
+
+msgid "استيراد"
+msgstr "Import"
+
+msgid "الصيغة المتوقعة"
+msgstr "Expected format"
+
+msgid "هذه صيغة خاصة بحفاية (وليست صيغة صادرة من البنوك). يُحفظ الملف كله أو لا يُحفظ منه شيء."
+msgstr "This is Hifaya's own format (not a format produced by banks). The whole file is saved, or nothing is saved."
+
+msgid "مطلوب:"
+msgstr "Required:"
+
+msgid "(رقم ≥ 0 بخانتين عشريتين كحد أقصى)، currency (SAR / USD / EUR / GBP / AED)،"
+msgstr "(a number ≥ 0 with at most two decimals), currency (SAR / USD / EUR / GBP / AED),"
+
+msgid "اختياري:"
+msgstr "Optional:"
+
+msgid "(رقم اشتراكك الظاهر في صفحة التفاصيل، أو null)، payment_method، reference، status (paid / pending / failed / refunded، والافتراضي paid)،"
+msgstr "(your subscription number shown on its details page, or null), payment_method, reference, status (paid / pending / failed / refunded, default paid),"
+
+msgid "عملة الدفعة يجب أن تطابق عملة الاشتراك المرتبط. الحد الأقصى 500 دفعة و1 ميغابايت."
+msgstr "The payment currency must match the linked subscription's currency. Maximum 500 payments and 1 MB."
+
+#, python-format
+msgid "… و%(n)s أخطاء أخرى."
+msgstr "… and %(n)s more errors."
+
+msgid "المدفوعات | حفاية"
+msgstr "Payments | Hifaya"
+
+msgid "تسجيل دفعة"
+msgstr "Record a payment"
+
+msgid "لديك"
+msgstr "You have"
+
+msgid "دفعة تحتاج إلى مراجعة (دفعات متشابهة وفق قواعد واضحة، وليست احتيالًا مؤكدًا)."
+msgstr "payment(s) that need review (similar payments under clear rules, not confirmed fraud)."
+
+msgid "اعرضها"
+msgstr "Show them"
+
+msgid "البحث والتصفية"
+msgstr "Search and filter"
+
+msgid "بحث وتصفية"
+msgstr "Search and filter"
+
+msgid "رقم الدفعة"
+msgstr "Payment no."
+
+msgid "الطريقة / المرجع"
+msgstr "Method / reference"
+
+msgid "المراجعة"
+msgstr "Review"
+
+msgid "إجراءات"
+msgstr "Actions"
+
+msgid "تحتاج مراجعة"
+msgstr "Needs review"
+
+msgid "عرض"
+msgstr "View"
+
+msgid "لا توجد مدفوعات تطابق البحث أو التصفية."
+msgstr "No payments match the search or filter."
+
+msgid "مسح التصفية"
+msgstr "Clear filter"
+
+msgid "لا توجد مدفوعات مسجّلة بعد"
+msgstr "No payments recorded yet"
+
+msgid "سجّل أول دفعة"
+msgstr "Record your first payment"
+
+msgid "التقارير | حفاية"
+msgstr "Reports | Hifaya"
+
+msgid "تصفية التقارير"
+msgstr "Filter reports"
+
+msgid "عرض التقرير"
+msgstr "Show report"
+
+msgid "الفترة تؤثر على المدفوعات والتجديدات. فلاتر الحالة والتصنيف والاشتراك تُطبَّق أيضًا على المدفوعات المرتبطة بها (والدفعات بلا اشتراك لا تظهر عند استخدامها). المجاميع تُعرض لكل عملة على حدة ولا تُجمع العملات معًا."
+msgstr "The period affects payments and renewals. Status, category and subscription filters also apply to the payments linked to them (payments without a subscription are hidden when they are used). Totals are shown per currency and currencies are never added together."
+
+msgid "لا توجد بيانات كافية لعرض التقارير بعد. أضف اشتراكات ومدفوعات أولًا."
+msgstr "Not enough data to show reports yet. Add subscriptions and payments first."
+
+msgid "أضف اشتراكًا"
+msgstr "Add a subscription"
+
+msgid "التكلفة الشهرية التقديرية (النشطة)"
+msgstr "Estimated monthly cost (active)"
+
+msgid "لا توجد اشتراكات نشطة ضمن الفلاتر."
+msgstr "No active subscriptions match the filters."
+
+msgid "تُحوَّل الدورات الأسبوعية والربع سنوية والسنوية إلى ما يعادلها شهريًا. القرار الذي تدعمه: هل ميزانيتك الشهرية تتحمل هذه الاشتراكات؟"
+msgstr "Weekly, quarterly and yearly cycles are converted to their monthly equivalent. The decision it supports: can your monthly budget afford these subscriptions?"
+
+msgid "إجمالي المدفوعات «المدفوعة» في الفترة"
+msgstr "Total “paid” payments in the period"
+
+msgid "لا توجد دفعات مدفوعة ضمن الفلاتر المختارة."
+msgstr "No paid payments match the selected filters."
+
+msgid "عدد التجديدات النشطة خلال الفترة:"
+msgstr "Active renewals during the period:"
+
+msgid "اختر فترة (من/إلى) لعرض عدد التجديدات خلالها."
+msgstr "Choose a period (from/to) to see the number of renewals in it."
+
+msgid "الاشتراكات حسب الحالة"
+msgstr "Subscriptions by status"
+
+msgid "العدد"
+msgstr "Count"
+
+msgid "لا توجد اشتراكات ضمن الفلاتر."
+msgstr "No subscriptions match the filters."
+
+msgid "الاشتراكات حسب التصنيف"
+msgstr "Subscriptions by category"
+
+msgid "التصنيف"
+msgstr "Category"
+
+msgid "إجمالي المدفوع لكل اشتراك"
+msgstr "Total paid per subscription"
+
+msgid "عدد الدفعات"
+msgstr "Number of payments"
+
+msgid "الإجمالي"
+msgstr "Total"
+
+msgid "القرار الذي يدعمه: أي اشتراكات تكلّفك أكثر فعليًا فتستحق المراجعة أو الإيقاف."
+msgstr "The decision it supports: which subscriptions actually cost you the most and deserve a review or a pause."
+
+msgid "لا توجد دفعات مدفوعة مرتبطة باشتراكات ضمن الفلاتر."
+msgstr "No paid payments linked to subscriptions match the filters."
+
+msgid "ما يحتاج إلى مراجعة"
+msgstr "What needs review"
+
+msgid "دفعات تحتاج إلى مراجعة:"
+msgstr "Payments that need review:"
+
+msgid "التجديد المتأخر"
+msgstr "Overdue renewals"
+
+msgid "السبب"
+msgstr "Reason"
+
+msgid "تاريخ التجديد مضى والاشتراك ما زال نشطًا"
+msgstr "The renewal date has passed and the subscription is still active"
+
+msgid "لا توجد اشتراكات تحتاج إلى مراجعة."
+msgstr "No subscriptions need review."
+
+#, python-format
+msgid "(%(label)s · %(num)s دفعة)"
+msgstr "(%(label)s · %(num)s payments)"
+
+#, python-format
+msgid "إجمالي الدفعات المطابقة بكل حالاتها: %(n)s"
+msgstr "Total matching payments in all statuses: %(n)s"
+
+msgid "حذف اشتراك | حفاية"
+msgstr "Delete subscription | Hifaya"
+
+msgid "تأكيد الحذف"
+msgstr "Confirm deletion"
+
+msgid "لهذا الاشتراك"
+msgstr "This subscription has"
+
+msgid "دفعة مسجّلة، لذلك لا يمكن حذفه حفاظًا على سجلك المالي."
+msgstr "recorded payment(s), so it cannot be deleted, to protect your financial record."
+
+msgid "يمكنك"
+msgstr "You can"
+
+msgid "أرشفته"
+msgstr "archive it"
+
+msgid "بدلًا من ذلك: يبقى في السجل ولا تصلك عنه تذكيرات."
+msgstr "instead: it stays in your records and you will not receive reminders about it."
+
+msgid "أرشفة الاشتراك"
+msgstr "Archive subscription"
+
+msgid "رجوع"
+msgstr "Back"
+
+msgid "سيُحذف الاشتراك وإشعاراته وسجلات التذكير الخاصة به، ولا يمكن التراجع عن ذلك."
+msgstr "The subscription, its notifications and its reminder logs will be deleted, and this cannot be undone."
+
+#, python-format
+msgid "هل تريد حذف «%(name)s» نهائيًا؟"
+msgstr "Do you want to permanently delete “%(name)s”?"
+
+msgid "حذف"
+msgstr "Delete"
+
+msgid "التفاصيل"
+msgstr "Details"
+
+msgid "رقم الاشتراك (للاستيراد JSON)"
+msgstr "Subscription no. (for JSON import)"
+
+msgid "دورة الفوترة"
+msgstr "Billing cycle"
+
+msgid "تاريخ البداية"
+msgstr "Start date"
+
+msgid "التجديد القادم"
+msgstr "Next renewal"
+
+msgid "متكرر؟"
+msgstr "Recurring?"
+
+msgid "نعم"
+msgstr "Yes"
+
+msgid "لا"
+msgstr "No"
+
+msgid "التذكير"
+msgstr "Reminder"
+
+msgid "المدفوعات المرتبطة"
+msgstr "Linked payments"
+
+msgid "إجمالي المدفوع (الدفعات «مدفوعة» فقط):"
+msgstr "Total paid (only “paid” payments):"
+
+msgid "عدد الدفعات:"
+msgstr "Number of payments:"
+
+msgid "لا توجد مدفوعات لهذا الاشتراك بعد."
+msgstr "No payments for this subscription yet."
+
+msgid "إشعارات هذا الاشتراك"
+msgstr "Notifications for this subscription"
+
+msgid "لا توجد إشعارات لهذا الاشتراك."
+msgstr "No notifications for this subscription."
+
+#, python-format
+msgid "قبل %(n)s يوم من التجديد"
+msgstr "%(n)s days before renewal"
+
+#, python-format
+msgid "أُنشئ في %(created)s · آخر تحديث %(updated)s"
+msgstr "Created on %(created)s · Last updated %(updated)s"
+
+msgid "مطلوبة."
+msgstr "are required."
+
+msgid "اشتراكاتي | حفاية"
+msgstr "My subscriptions | Hifaya"
+
+msgid "إضافة اشتراك"
+msgstr "Add subscription"
+
+msgid "الدورة"
+msgstr "Cycle"
+
+msgid "البداية"
+msgstr "Start"
+
+msgid "لا توجد اشتراكات تطابق البحث أو التصفية."
+msgstr "No subscriptions match the search or filter."
+
+msgid "كل اشتراكاتك مؤرشفة. اختر «مؤرشف» من فلتر الحالة لعرضها."
+msgstr "All your subscriptions are archived. Choose “Archived” in the status filter to show them."
+
+#, python-format
+msgid "قبل %(n)s يوم"
+msgstr "%(n)s days before"
+
+#, python-format
+msgid " 🔎 %(flagged)s منها تشبه دفعات أخرى وتحتاج إلى مراجعة."
+msgstr " 🔎 %(flagged)s of them look similar to other payments and need review."
+
+msgid " 🔎 وهي تشبه دفعة أخرى فتحتاج إلى مراجعة."
+msgstr " 🔎 It looks similar to another payment and needs review."
+
+#, python-format
+msgid "%(label)s: amount يقبل خانتين عشريتين كحد أقصى."
+msgstr "%(label)s: amount accepts at most two decimal places."
+
+#, python-format
+msgid "%(label)s: payment_date مطلوب بصيغة YYYY-MM-DD."
+msgstr "%(label)s: payment_date is required in the format YYYY-MM-DD."
+
+#, python-format
+msgid "%(label)s: status يجب أن يكون واحدًا من %(v2)s."
+msgstr "%(label)s: status must be one of %(v2)s."
+
+#, python-format
+msgid "%(label)s: subscription_id يجب أن يكون رقمًا صحيحًا أو null."
+msgstr "%(label)s: subscription_id must be an integer or null."
+
+#, python-format
+msgid "%(label)s: الاشتراك رقم %(sub_id)s غير موجود في حسابك."
+msgstr "%(label)s: subscription number %(sub_id)s does not exist in your account."
+
+#, python-format
+msgid "%(label)s: الحقل %(key)s يجب أن يكون نصًا لا يتجاوز %(limit)s حرفًا."
+msgstr "%(label)s: the field %(key)s must be text of at most %(limit)s characters."
+
+#, python-format
+msgid "%(label)s: الحقل amount مطلوب."
+msgstr "%(label)s: the field amount is required."
+
+#, python-format
+msgid "%(label)s: العملة غير مدعومة (%(v2)s)."
+msgstr "%(label)s: currency is not supported (%(v2)s)."
+
+#, python-format
+msgid "%(label)s: عملة الدفعة لا تطابق عملة الاشتراك (%(currency)s)."
+msgstr "%(label)s: the payment currency does not match the subscription currency (%(currency)s)."
+
+#, python-format
+msgid "%(label)s: قيمة amount غير رقمية."
+msgstr "%(label)s: amount is not a number."
+
+#, python-format
+msgid "%(label)s: قيمة amount كبيرة جدًا."
+msgstr "%(label)s: amount is too large."
+
+#, python-format
+msgid "%(label)s: لا يُسمح بمبلغ سالب."
+msgstr "%(label)s: negative amounts are not allowed."
+
+#, python-format
+msgid "%(label)s: يجب أن يكون كائنًا (object)."
+msgstr "%(label)s: must be an object."
+
+msgid "آخر تحديث"
+msgstr "Last updated"
+
+msgid "أسبوعية"
+msgstr "Weekly"
+
+msgid "أمس (متأخر)"
+msgstr "Yesterday (overdue)"
+
+msgid "إشعار"
+msgstr "Notification"
+
+msgid "إلى تاريخ"
+msgstr "To date"
+
+msgid "اختر التصنيف"
+msgstr "Choose category"
+
+msgid "اسم التصنيف"
+msgstr "Category name"
+
+msgid "اسم الخدمة"
+msgstr "Service name"
+
+msgid "اسم الخدمة مطلوب."
+msgstr "Service name is required."
+
+msgid "اسم المنشأة"
+msgstr "Business name"
+
+msgid "اسم المنشأة مطلوب لحساب المنشأة."
+msgstr "Business name is required for a business account."
+
+msgid "اشتراك"
+msgstr "Subscription"
+
+msgid "الأيام قبل التجديد"
+msgstr "Days before renewal"
+
+msgid "الاسم"
+msgstr "Name"
+
+msgid "الاسم (تصاعدي)"
+msgstr "Name (A–Z)"
+
+msgid "الاسم (تنازلي)"
+msgstr "Name (Z–A)"
+
+msgid "الاشتراكات"
+msgstr "Subscriptions"
+
+msgid "البريد الإلكتروني"
+msgstr "Email"
+
+msgid "البريد الإلكتروني أو كلمة المرور غير صحيحة."
+msgstr "The email or password is incorrect."
+
+msgid "التاريخ (الأحدث أولًا)"
+msgstr "Date (newest first)"
+
+msgid "التاريخ (الأقدم أولًا)"
+msgstr "Date (oldest first)"
+
+msgid "التجديد القادم (الأبعد أولًا)"
+msgstr "Next renewal (latest first)"
+
+msgid "التجديد القادم (الأقرب أولًا)"
+msgstr "Next renewal (soonest first)"
+
+msgid "التذكير قبل التجديد (بالأيام)"
+msgstr "Remind before renewal (days)"
+
+msgid "الترتيب"
+msgstr "Order"
+
+msgid "التصنيفات"
+msgstr "Categories"
+
+msgid "الحد الأقصى للتذكير 60 يومًا."
+msgstr "The maximum reminder period is 60 days."
+
+msgid "الدفعات الحالية"
+msgstr "Current payments"
+
+msgid "الرسالة"
+msgstr "Message"
+
+msgid "العرض"
+msgstr "Show"
+
+#, python-format
+msgid "العنصر %(index)s"
+msgstr "Item %(index)s"
+
+msgid "العنوان"
+msgstr "Title"
+
+msgid "القناة"
+msgstr "Channel"
+
+msgid "الكل"
+msgstr "All"
+
+msgid "المؤرشفة فقط"
+msgstr "Archived only"
+
+msgid "المبلغ (الأعلى أولًا)"
+msgstr "Amount (highest first)"
+
+msgid "المبلغ (الأقل أولًا)"
+msgstr "Amount (lowest first)"
+
+msgid "المستخدم"
+msgstr "User"
+
+msgid "المقروءة"
+msgstr "Read"
+
+msgid "الملف ليس JSON صالحًا (تأكد من الترميز UTF-8 ومن صحة الأقواس والفواصل)."
+msgstr "The file is not valid JSON (check the UTF-8 encoding and the brackets and commas)."
+
+msgid "الملفات الشخصية"
+msgstr "Profiles"
+
+msgid "الوصف"
+msgstr "Description"
+
+msgid "اليوم"
+msgstr "Today"
+
+msgid "بحث باسم الخدمة"
+msgstr "Search by service name"
+
+#, python-format
+msgid "بعد %(days)s أيام"
+msgstr "In %(days)s days"
+
+#, python-format
+msgid "بعد %(days)s يومًا"
+msgstr "In %(days)s days"
+
+msgid "بعد يومين"
+msgstr "In 2 days"
+
+msgid "تأكيد كلمة المرور"
+msgstr "Confirm password"
+
+msgid "تاريخ الإنشاء"
+msgstr "Created at"
+
+msgid "تاريخ التجديد"
+msgstr "Renewal date"
+
+msgid "تاريخ التجديد القادم"
+msgstr "Next renewal date"
+
+msgid "تاريخ التجديد القادم لا يمكن أن يسبق تاريخ البداية."
+msgstr "The next renewal date cannot be before the start date."
+
+msgid "تاريخ النهاية يجب ألا يسبق تاريخ البداية."
+msgstr "The end date cannot be before the start date."
+
+msgid "تحتاج إلى مراجعة فقط"
+msgstr "Needs review only"
+
+#, python-format
+msgid "تذكير بتجديد %(service_name)s"
+msgstr "Renewal reminder for %(service_name)s"
+
+msgid "تذكّرني على هذا الجهاز"
+msgstr "Remember me on this device"
+
+msgid "تصنيف"
+msgstr "Category"
+
+#, python-format
+msgid "تعديل اشتراك: %(service_name)s"
+msgstr "Edit subscription: %(service_name)s"
+
+#, python-format
+msgid "تعديل الدفعة #%(pk)s"
+msgstr "Edit payment #%(pk)s"
+
+msgid "تم إنشاء هذا التذكير مسبقًا."
+msgstr "This reminder has already been created."
+
+msgid "جنيه إسترليني (GBP)"
+msgstr "British Pound (GBP)"
+
+msgid "حالة الاشتراك"
+msgstr "Subscription status"
+
+msgid "حالة القراءة"
+msgstr "Read status"
+
+msgid "حجم الملف أكبر من الحد المسموح (1 ميغابايت)."
+msgstr "The file is larger than the allowed size (1 MB)."
+
+msgid "د.إ"
+msgstr "AED"
+
+msgid "درهم إماراتي (AED)"
+msgstr "UAE Dirham (AED)"
+
+msgid "دفعة"
+msgstr "Payment"
+
+msgid "دولار أمريكي (USD)"
+msgstr "US Dollar (USD)"
+
+msgid "ر.س"
+msgstr "SAR"
+
+msgid "ربع سنوية"
+msgstr "Quarterly"
+
+msgid "ريال سعودي (SAR)"
+msgstr "Saudi Riyal (SAR)"
+
+msgid "سبب المراجعة"
+msgstr "Review reason"
+
+msgid "سجل تذكير"
+msgstr "Reminder log"
+
+msgid "سجلات التذكير"
+msgstr "Reminder logs"
+
+msgid "سنوية"
+msgstr "Yearly"
+
+msgid "شهرية"
+msgstr "Monthly"
+
+#, python-format
+msgid "عدد الدفعات يتجاوز الحد المسموح (%(MAX_ROWS)s)."
+msgstr "The number of payments exceeds the allowed limit (%(MAX_ROWS)s)."
+
+#, python-format
+msgid "عملة الدفعة يجب أن تطابق عملة الاشتراك (%(currency)s)."
+msgstr "The payment currency must match the subscription currency (%(currency)s)."
+
+msgid "غدًا"
+msgstr "Tomorrow"
+
+msgid "غير المقروءة"
+msgstr "Unread"
+
+msgid "فاشلة"
+msgstr "Failed"
+
+msgid "فرد"
+msgstr "Individual"
+
+#, python-format
+msgid "فشل التحقق أثناء الحفظ، ولم يُحفظ شيء: %(v1)s"
+msgstr "Validation failed while saving, nothing was saved: %(v1)s"
+
+msgid "قائمة payments فارغة."
+msgstr "The payments list is empty."
+
+msgid "قيد الانتظار"
+msgstr "Pending"
+
+msgid "كل الاشتراكات"
+msgstr "All subscriptions"
+
+msgid "كل الاشتراكات (عدا المؤرشفة)"
+msgstr "All subscriptions (except archived)"
+
+msgid "كل التصنيفات"
+msgstr "All categories"
+
+msgid "كل الحالات"
+msgstr "All statuses"
+
+msgid "كل الدورات"
+msgstr "All cycles"
+
+msgid "كلمة المرور"
+msgstr "Password"
+
+msgid "كلمتا المرور غير متطابقتين."
+msgstr "The two passwords do not match."
+
+msgid "لا يمكن أن يكون المبلغ سالبًا."
+msgstr "The amount cannot be negative."
+
+msgid "لا يمكنك ربط دفعة باشتراك لا يخصك."
+msgstr "You cannot link a payment to a subscription that is not yours."
+
+msgid "مؤرشف"
+msgstr "Archived"
+
+#, python-format
+msgid "متأخر منذ %(v1)s يومًا"
+msgstr "Overdue by %(v1)s days"
+
+msgid "متوقف"
+msgstr "Paused"
+
+msgid "مدفوعة"
+msgstr "Paid"
+
+msgid "مستردة"
+msgstr "Refunded"
+
+msgid "مطلوب إذا كان نوع الحساب «منشأة»، ويُترك فارغًا للأفراد."
+msgstr "Required if the account type is “Business”; leave empty for individuals."
+
+msgid "ملغى"
+msgstr "Cancelled"
+
+msgid "ملف JSON"
+msgstr "JSON file"
+
+msgid "ملف شخصي"
+msgstr "Profile"
+
+msgid "من تاريخ"
+msgstr "From date"
+
+msgid "منشأة"
+msgstr "Business"
+
+msgid "نشط"
+msgstr "Active"
+
+msgid "نوع الحساب"
+msgstr "Account type"
+
+msgid "هذا البريد الإلكتروني مسجّل مسبقًا."
+msgstr "This email address is already registered."
+
+msgid "هذا الحساب غير مفعّل."
+msgstr "This account is not active."
+
+msgid "هل الاشتراك متكرر؟"
+msgstr "Is the subscription recurring?"
+
+msgid "وقت الإرسال"
+msgstr "Sent at"
+
+msgid "يجب أن يحتوي الملف على كائن فيه قائمة باسم \"payments\"."
+msgstr "The file must contain an object with a list named \"payments\"."
+
+msgid "يوجد تصنيف بنفس الاسم."
+msgstr "A category with the same name already exists."
+
+msgid "يورو (EUR)"
+msgstr "Euro (EUR)"
+
+#, python-format
+msgid "⏰ اشتراكك في «%(service_name)s» يتجدد اليوم! راجعه الآن 🔔"
+msgstr "⏰ Your subscription to “%(service_name)s” renews today! Review it now 🔔"
+
+#, python-format
+msgid "⏳ باقي على اشتراكك في «%(service_name)s» %(days_left)s أيام ويتجدد، سارع بالتعديل! 🔔"
+msgstr "⏳ Your subscription to “%(service_name)s” renews in %(days_left)s days. Hurry and update it! 🔔"
+
+#, python-format
+msgid "⏳ باقي يوم واحد على تجديد اشتراكك في «%(service_name)s»، سارع بالتعديل! 🔔"
+msgstr "⏳ One day left until your “%(service_name)s” subscription renews. Hurry and update it! 🔔"
+
+#, python-format
+msgid "⏳ باقي يومان على تجديد اشتراكك في «%(service_name)s»، سارع بالتعديل! 🔔"
+msgstr "⏳ Two days left until your “%(service_name)s” subscription renews. Hurry and update it! 🔔"
+
+#, python-format
+msgid "♻️ تمت استعادة الدفعة #%(pk)s."
+msgstr "♻️ Payment #%(pk)s has been restored."
+
+msgid "⚠️ بعض عوامل التصفية غير صالحة وتم تجاهلها."
+msgstr "⚠️ Some filters were invalid and were ignored."
+
+#, python-format
+msgid "✅ تم استيراد %(created)s دفعة بنجاح."
+msgstr "✅ %(created)s payments were imported successfully."
+
+#, python-format
+msgid "✅ تم تحديث اشتراك «%(service_name)s»."
+msgstr "✅ Subscription “%(service_name)s” was updated."
+
+msgid "✅ تم تحديث الدفعة."
+msgstr "✅ The payment was updated."
+
+msgid "✅ تم تسجيل الدفعة بنجاح!"
+msgstr "✅ The payment was recorded successfully!"
+
+#, python-format
+msgid "✅ تم تمييز %(updated)s إشعار كمقروء."
+msgstr "✅ %(updated)s notifications were marked as read."
+
+msgid "✅ تم تمييز الإشعار كمقروء."
+msgstr "✅ The notification was marked as read."
+
+#, python-format
+msgid "✅ تم حفظ اشتراك «%(service_name)s» بنجاح!"
+msgstr "✅ Subscription “%(service_name)s” was saved successfully!"
+
+msgid "✅ تمت مراجعة الدفعة وإزالة العلامة."
+msgstr "✅ The payment was reviewed and the flag was removed."
+
+msgid "❌ اختر ملف JSON أولًا."
+msgstr "❌ Please choose a JSON file first."
+
+msgid "❌ تعذّر إنشاء الحساب، راجع الحقول المظللة."
+msgstr "❌ The account could not be created. Please check the highlighted fields."
+
+msgid "❌ حجم الملف أكبر من الحد المسموح (1 ميغابايت)."
+msgstr "❌ The file is larger than the allowed size (1 MB)."
+
+msgid "❌ لم يتم الحفظ، راجع الحقول المظللة وصحّح الأخطاء."
+msgstr "❌ Nothing was saved. Please check the highlighted fields and fix the errors."
+
+msgid "❌ لم يُحفظ شيء: الملف يحتوي على أخطاء. صحّحها وأعد المحاولة."
+msgstr "❌ Nothing was saved: the file contains errors. Fix them and try again."
+
+msgid "🎉 تم إنشاء حسابك بنجاح! سجّل دخولك للبدء."
+msgstr "🎉 Your account was created successfully! Log in to get started."
+
+msgid "👋 أهلًا بعودتك إلى حفاية!"
+msgstr "👋 Welcome back to Hifaya!"
+
+msgid "💡 لا توجد إشعارات غير مقروءة."
+msgstr "💡 There are no unread notifications."
+
+msgid "💡 لا توجد تذكيرات جديدة مستحقة الآن."
+msgstr "💡 There are no new due reminders right now."
+
+msgid "💡 هذا الاشتراك مؤرشف مسبقًا."
+msgstr "💡 This subscription is already archived."
+
+msgid "💡 هذه الدفعة مؤرشفة؛ استعدها أولًا إذا أردت تعديلها."
+msgstr "💡 This payment is archived; restore it first if you want to edit it."
+
+#, python-format
+msgid "📦 تمت أرشفة «%(service_name)s». لن تصلك تذكيرات عنه، ويمكنك استعادته بتعديل حالته."
+msgstr "📦 “%(service_name)s” was archived. You will not receive reminders about it, and you can restore it by editing its status."
+
+#, python-format
+msgid "📦 تمت أرشفة الدفعة #%(pk)s. لن تدخل في التقارير، ويمكنك استعادتها."
+msgstr "📦 Payment #%(pk)s was archived. It will not be included in reports, and you can restore it."
+
+msgid "🔎 تم حفظ الدفعة، وهي تشبه دفعة أخرى فوُضعت علامة «تحتاج إلى مراجعة»."
+msgstr "🔎 The payment was saved. It looks similar to another payment, so it was flagged “Needs review”."
+
+#, python-format
+msgid "🔔 تذكير بتجديد %(service_name)s"
+msgstr "🔔 Renewal reminder for %(service_name)s"
+
+#, python-format
+msgid "🔔 تم إنشاء %(created)s تذكير جديد."
+msgstr "🔔 %(created)s new reminders were created."
+
+#, python-format
+msgid "🗑️ تم حذف اشتراك «%(name)s» نهائيًا."
+msgstr "🗑️ Subscription “%(name)s” was permanently deleted."
+
+#, python-format
+msgid "🗑️ تم حذف الدفعة #%(number)s نهائيًا."
+msgstr "🗑️ Payment #%(number)s was permanently deleted."
+
+msgid "🚫 لا يمكن حذف اشتراك له مدفوعات مسجّلة، استخدم الأرشفة بدلًا من ذلك."
+msgstr "🚫 A subscription with recorded payments cannot be deleted. Archive it instead."
+
+msgid "🚫 لا يمكن حذف دفعة نشطة؛ أرشفها أولًا ثم احذفها إن لزم."
+msgstr "🚫 An active payment cannot be deleted; archive it first, then delete it if needed."
+
+#, python-format
+msgid "مدفوعات متشابهة: نفس الاشتراك والمبلغ والعملة وتاريخ متقارب (خلال %(days)s أيام). قد تكون مقصودة، راجعها بنفسك."
+msgstr "Similar payments: same subscription, amount and currency and a close date (within %(days)s days). They may be intentional; please review them yourself."
+
+msgid "خدمة مخصصة"
+msgstr "Custom service"
+
+msgid "حفاية"
+msgstr "Hifaya"
+
+msgid "اللغة المفضلة"
+msgstr "Preferred language"
+
+msgid "الترفيه والموسيقى"
+msgstr "Entertainment & Music"
+
+msgid "الذكاء الاصطناعي"
+msgstr "Artificial Intelligence"
+
+msgid "التخزين والإنتاجية"
+msgstr "Storage & Productivity"
+
+msgid "التصميم والأدوات"
+msgstr "Design & Tools"
+
+msgid "التسوق والخدمات الرقمية"
+msgstr "Shopping & Digital Services"
+
+msgid "الألعاب"
+msgstr "Games"
+
+msgid "التعليم"
+msgstr "Education"
+
+msgid "أخرى"
+msgstr "Other"
+
+msgid "منصات المشاهدة والموسيقى"
+msgstr "Streaming and music platforms"
+
+msgid "أدوات وخدمات الذكاء الاصطناعي"
+msgstr "AI tools and services"
+
+msgid "التخزين السحابي وأدوات العمل"
+msgstr "Cloud storage and work tools"
+
+msgid "التصميم والبرمجة والأدوات"
+msgstr "Design, programming and tools"
+
+msgid "العضويات والخدمات الرقمية"
+msgstr "Memberships and digital services"
+
+msgid "اشتراكات الألعاب"
+msgstr "Game subscriptions"
+
+msgid "التعلم والدورات"
+msgstr "Learning and courses"
+
+msgid "أي اشتراك لا يناسب بقية التصنيفات"
+msgstr "Any subscription that does not fit the other categories"
+

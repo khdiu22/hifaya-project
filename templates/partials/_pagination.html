@@ -1,0 +1,7 @@
+{% load i18n %}{% if page_obj.paginator.num_pages > 1 %}
+<nav class="pagination" aria-label="{% trans 'تقسيم الصفحات' %}">
+  {% if page_obj.has_previous %}<a class="btn btn-outline btn-sm" href="{% querystring page=page_obj.previous_page_number %}">{% trans "السابق" %}</a>{% endif %}
+  <span>{% blocktrans with number=page_obj.number pages=page_obj.paginator.num_pages total=page_obj.paginator.count %}صفحة {{ number }} من {{ pages }} ({{ total }} نتيجة){% endblocktrans %}</span>
+  {% if page_obj.has_next %}<a class="btn btn-outline btn-sm" href="{% querystring page=page_obj.next_page_number %}">{% trans "التالي" %}</a>{% endif %}
+</nav>
+{% endif %}

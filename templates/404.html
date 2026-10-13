@@ -1,0 +1,16 @@
+
+{% extends "base_auth.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "الصفحة غير موجودة | حفاية" %}{% endblock %}
+{% block content %}
+<div class="empty">
+    <span class="big" aria-hidden="true">⚠️</span>
+    <h2 class="error-code">404</h2>
+    <h2>{% trans "الصفحة غير موجودة" %}</h2>
+    <p>{% trans "ربما حُذف السجل أو أن الرابط غير صحيح." %}</p>
+    <a class="btn" href="{% url 'core:dashboard' %}">
+        {% trans "العودة للوحة التحكم" %}
+    </a>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% load i18n %}{% if messages %}
+<div class="toasts" role="status" aria-live="polite">
+  {% for message in messages %}
+    <input type="checkbox" id="toast-{{ forloop.counter }}" class="toast-x">
+    <div class="toast {{ message.tags }}">
+      <span>{{ message }}</span>
+      <label for="toast-{{ forloop.counter }}" class="toast-close" aria-label="{% trans 'إغلاق' %}">×</label>
+    </div>
+  {% endfor %}
+</div>
+{% endif %}

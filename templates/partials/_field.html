@@ -1,0 +1,15 @@
+{% if field.is_hidden %}{{ field }}{% else %}
+<div class="field{% if field.errors %} has-error{% endif %}">
+  {% if field.widget_type == "radioselect" %}
+    <span class="label" id="{{ field.auto_id }}_label">{{ field.label }}{% if field.field.required %}<span class="req" aria-hidden="true"> *</span>{% endif %}</span>
+    <div class="radio-row" role="radiogroup" aria-labelledby="{{ field.auto_id }}_label">{{ field }}</div>
+  {% elif field.widget_type == "checkbox" %}
+    <label class="check">{{ field }} <span>{{ field.label }}</span></label>
+  {% else %}
+    <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %}<span class="req" aria-hidden="true"> *</span>{% endif %}</label>
+    {{ field }}
+  {% endif %}
+  {% if field.help_text %}<span class="help">{{ field.help_text }}</span>{% endif %}
+  {{ field.errors }}
+</div>
+{% endif %}

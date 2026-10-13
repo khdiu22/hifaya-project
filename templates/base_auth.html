@@ -1,0 +1,54 @@
+{% load i18n %}{% load static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" data-theme="{{ theme }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="{{ theme }}">
+
+  <title>{% block title %}حفاية | Hifaya{% endblock %}</title>
+
+  <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body class="auth-body">
+  <div class="auth-wrap">
+
+    <div class="auth-top">
+      {% include "partials/_language_switch.html" %}
+      {% include "partials/_theme_toggle.html" %}
+    </div>
+
+    <main class="auth-card">
+      {% include "partials/_messages.html" %}
+      <div class="auth-brand">
+        <img src="{% static 'img/logo.png' %}" alt="{% trans 'شعار حفاية' %}">
+
+        <h1>
+          حفاية <small>Hifaya</small>
+        </h1>
+
+        <p>{% trans "اشتراكاتك ومدفوعاتك في مكان واحد وتحت حمايتك" %} </p>
+      </div>
+
+      {% block content %}{% endblock %}
+    </main>
+
+    <!-- Hifaya Footer -->
+    <footer class="site-footer auth-footer">
+      <div class="footer-brand">
+        <img src="{% static 'img/logo.png' %}" alt="{% trans 'شعار حفاية' %}">
+
+        <strong>
+          حفاية <span>| Hifaya</span>
+        </strong>
+      </div>
+
+      <p>
+        {% trans "جميع الحقوق محفوظة" %} © 2026
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

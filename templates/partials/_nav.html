@@ -1,0 +1,9 @@
+{% load i18n %}{% with ns=request.resolver_match.namespace view=request.resolver_match.view_name %}
+<nav class="nav" aria-label="{% trans 'القائمة الرئيسية' %}">
+  <a href="{% url 'core:dashboard' %}" class="{% if view == 'core:dashboard' %}active{% endif %}"><span class="ico" aria-hidden="true">📊</span> {% trans "لوحة التحكم" %}</a>
+  <a href="{% url 'subscriptions:list' %}" class="{% if ns == 'subscriptions' %}active{% endif %}"><span class="ico" aria-hidden="true">🗂️</span> {% trans "اشتراكاتي" %}</a>
+  <a href="{% url 'payments:list' %}" class="{% if ns == 'payments' %}active{% endif %}"><span class="ico" aria-hidden="true">💳</span> {% trans "المدفوعات" %}</a>
+  <a href="{% url 'notifications:list' %}" class="{% if ns == 'notifications' %}active{% endif %}"><span class="ico" aria-hidden="true">🔔</span> {% trans "الإشعارات" %}{% if unread_count %}<span class="count" aria-label="{% blocktrans with n=unread_count %}{{ n }} غير مقروء{% endblocktrans %}">{{ unread_count }}</span>{% endif %}</a>
+  <a href="{% url 'reports:index' %}" class="{% if ns == 'reports' %}active{% endif %}"><span class="ico" aria-hidden="true">📈</span> {% trans "التقارير" %}</a>
+</nav>
+{% endwith %}

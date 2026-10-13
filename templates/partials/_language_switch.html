@@ -1,0 +1,20 @@
+
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<form method="post" action="{% url 'accounts:save_language_preference' %}" class="inline-form lang-form">
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ request.get_full_path }}">
+
+  {% if LANGUAGE_CODE == "ar" %}
+    <input type="hidden" name="language" value="en">
+    <button class="btn theme-btn btn-sm lang-btn" type="submit" lang="en" dir="ltr" title="Switch to English">
+      🌐 English
+    </button>
+  {% else %}
+    <input type="hidden" name="language" value="ar">
+    <button class="btn theme-btn btn-sm lang-btn" type="submit" lang="ar" dir="rtl" title="التبديل إلى العربية">
+      🌐 العربية
+    </button>
+  {% endif %}
+</form>

@@ -1,0 +1,8 @@
+{% load i18n %}<form method="post" action="{% url 'core:set_theme' %}" class="inline-form">
+  {% csrf_token %}
+  <input type="hidden" name="theme" value="{{ next_theme }}">
+  <input type="hidden" name="next" value="{{ request.get_full_path }}">
+  <button class="btn theme-btn btn-sm" type="submit">
+    {% if theme == "light" %}🌙 {% trans "الوضع الداكن" %}{% else %}☀️ {% trans "الوضع الفاتح" %}{% endif %}
+  </button>
+</form>

@@ -1,0 +1,27 @@
+{% load i18n %}{% load static %}
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" data-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% trans "خطأ في الخادم | حفاية" %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="auth-body">
+    <div class="auth-wrap">
+        <main class="auth-card">
+            <div class="empty">
+                <span class="big" aria-hidden="true">🛠️</span>
+
+                <p class="error-code">500</p>
+
+                <h2>{% trans "حدث خطأ غير متوقع" %}</h2>
+                <p>{% trans "نعتذر عن ذلك، حاول مرة أخرى بعد قليل." %}</p>
+
+                <a class="btn" href="/">{% trans "العودة للرئيسية" %}</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

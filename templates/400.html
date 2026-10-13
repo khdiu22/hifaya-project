@@ -1,0 +1,10 @@
+{% extends "base_auth.html" %}
+{% load i18n %}
+{% block title %}{% trans "طلب غير صحيح | حفاية" %}{% endblock %}
+{% block content %}
+<div class="empty"><span class="big" aria-hidden="true">⚠️</span>
+<h2 class="error-code">400</h2>
+<h2>{% trans "طلب غير صحيح" %}</h2>
+<p>{% trans "تعذّر فهم الطلب. حاول مرة أخرى." %}</p>
+<a class="btn" href="{% url 'core:dashboard' %}">{% trans "العودة للوحة التحكم" %}</a></div>
+{% endblock %}
