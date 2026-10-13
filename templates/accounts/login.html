@@ -1,0 +1,13 @@
+{% extends "base_auth.html" %}
+{% load i18n %}
+{% block title %}{% trans "تسجيل الدخول | حفاية" %}{% endblock %}
+{% block content %}
+<h2>{% trans "تسجيل الدخول" %}</h2>
+<form method="post" novalidate>
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ next }}">
+  {% include "partials/_form_fields.html" %}
+  <button class="btn btn-block" type="submit">{% trans "دخول" %}</button>
+</form>
+<p class="auth-alt">{% trans "ما عندك حساب؟" %} <a href="{% url 'accounts:register' %}">{% trans "أنشئ حسابًا جديدًا" %}</a></p>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base_auth.html" %}
+{% load i18n %}
+{% block title %}{% trans "إنشاء حساب | حفاية" %}{% endblock %}
+{% block content %}
+<h2>{% trans "إنشاء حساب جديد" %}</h2>
+<form method="post" novalidate>
+  {% csrf_token %}
+  {% include "partials/_form_fields.html" %}
+  <button class="btn btn-block" type="submit">{% trans "إنشاء الحساب" %}</button>
+</form>
+<p class="auth-alt">{% trans "عندك حساب؟" %} <a href="{% url 'accounts:login' %}">{% trans "سجّل دخولك" %}</a></p>
+{% endblock %}
