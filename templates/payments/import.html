@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "استيراد مدفوعات | حفاية" %}{% endblock %}
+{% block heading %}{% trans "استيراد المدفوعات" %} (JSON){% endblock %}
+{% block content %}
+{% if errors %}
+<section class="card danger-card" role="alert">
+  <h2>❌ {% trans "لم يُحفظ شيء" %}</h2>
+  <ul>{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul>
+  {% if more_errors %}<p class="help">{% blocktrans with n=more_errors %}… و{{ n }} أخطاء أخرى.{% endblocktrans %}</p>{% endif %}
+</section>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data" class="card" novalidate>
+  {% csrf_token %}
+  {% include "partials/_form_fields.html" %}
+  <div class="toolbar">
+    <button class="btn" type="submit">📥 {% trans "استيراد" %}</button>
+    <a class="btn btn-outline" href="{% url 'payments:list' %}">{% trans "إلغاء" %}</a>
+  </div>
+</form>
+
+<section class="card section">
+  <h2>{% trans "الصيغة المتوقعة" %}</h2>
+  <p>{% trans "هذه صيغة خاصة بحفاية (وليست صيغة صادرة من البنوك). يُحفظ الملف كله أو لا يُحفظ منه شيء." %}</p>
+<pre dir="ltr">{
+  "payments": [
+    {
+      "subscription_id": 3,
+      "amount": "45.00",
+      "currency": "SAR",
+      "payment_date": "2026-10-01",
+      "payment_method": "Card",
+      "reference": "INV-1001",
+      "status": "paid",
+      "notes": ""
+    }
+  ]
+}</pre>
+  <ul>
+    <li><b>{% trans "مطلوب:" %}</b> amount {% trans "(رقم ≥ 0 بخانتين عشريتين كحد أقصى)، currency (SAR / USD / EUR / GBP / AED)،" %} payment_date (YYYY-MM-DD).</li>
+    <li><b>{% trans "اختياري:" %}</b> subscription_id {% trans "(رقم اشتراكك الظاهر في صفحة التفاصيل، أو null)، payment_method، reference، status (paid / pending / failed / refunded، والافتراضي paid)،" %} notes.</li>
+    <li>{% trans "عملة الدفعة يجب أن تطابق عملة الاشتراك المرتبط. الحد الأقصى 500 دفعة و1 ميغابايت." %}</li>
+  </ul>
+</section>
+{% endblock %}

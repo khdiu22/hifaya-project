@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ title }} | {% trans "حفاية" %}{% endblock %}
+{% block heading %}{{ title }}{% endblock %}
+{% block content %}
+<form method="post" class="card" novalidate>
+  {% csrf_token %}
+  <p class="help">{% trans "الحقول المعلّمة بـ" %} <span class="req">*</span> {% trans "مطلوبة. عملة الدفعة يجب أن تطابق عملة الاشتراك المرتبط بها." %}</p>
+  {% include "partials/_form_fields.html" %}
+  <div class="toolbar">
+    <button class="btn" type="submit">💾 {% trans "حفظ" %}</button>
+    <a class="btn btn-outline" href="{% if is_edit %}{% url 'payments:detail' payment.pk %}{% else %}{% url 'payments:list' %}{% endif %}">{% trans "إلغاء" %}</a>
+  </div>
+</form>
+{% endblock %}

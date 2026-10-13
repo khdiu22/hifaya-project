@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load hifaya_tags %}
+{% block title %}{% trans "الدفعة" %} #{{ payment.pk }} | {% trans "حفاية" %}{% endblock %}
+{% block heading %}{% trans "الدفعة" %} #{{ payment.pk }}{% endblock %}
+{% block content %}
+<div class="toolbar">
+  {% if not payment.is_archived %}
+    <a class="btn" href="{% url 'payments:update' payment.pk %}">✏️ {% trans "تعديل" %}</a>
+    <form method="post" action="{% url 'payments:archive' payment.pk %}" class="inline-form">{% csrf_token %}<button class="btn btn-outline" type="submit">📦 {% trans "أرشفة" %}</button></form>
+  {% else %}
+    <form method="post" action="{% url 'payments:restore' payment.pk %}" class="inline-form">{% csrf_token %}<button class="btn" type="submit">♻️ {% trans "استعادة" %}</button></form>
+    <a class="btn btn-danger" href="{% url 'payments:delete' payment.pk %}">🗑️ {% trans "حذف نهائي" %}</a>
+  {% endif %}
+  <a class="btn btn-outline" href="{% url 'payments:list' %}">{% trans "رجوع للقائمة" %}</a>
+</div>
+
+{% if payment.review_required %}
+<div class="notice unread">
+  <div><b>🔎 {% trans "تحتاج إلى مراجعة" %}</b><div>{{ payment.review_reason }}</div></div>
+  <form method="post" action="{% url 'payments:reviewed' payment.pk %}" class="inline-form">{% csrf_token %}<button class="btn btn-success btn-sm" type="submit">✅ {% trans "راجعتها" %}</button></form>
+</div>
+{% endif %}
+
+<section class="card">
+  <dl class="details">
+    <dt>{% trans "الاشتراك المرتبط" %}</dt><dd>{% if payment.subscription %}<a href="{% url 'subscriptions:detail' payment.subscription.pk %}">{{ payment.subscription.service_name }}</a>{% else %}{% trans "بدون اشتراك محدد" %}{% endif %}</dd>
+    <dt>{% trans "المبلغ" %}</dt><dd>{{ payment.amount|money:payment.currency }}</dd>
+    <dt>{% trans "العملة" %}</dt><dd>{{ payment.currency }}</dd>
+    <dt>{% trans "تاريخ الدفع" %}</dt><dd>{{ payment.payment_date|date:"Y/m/d" }}</dd>
+    <dt>{% trans "طريقة الدفع" %}</dt><dd>{{ payment.payment_method|default:"—" }}</dd>
+    <dt>{% trans "مرجع العملية" %}</dt><dd>{{ payment.reference|default:"—" }}</dd>
+    <dt>{% trans "الحالة" %}</dt><dd><span class="badge {{ payment.status|badge }}">{{ payment.get_status_display }}</span>{% if payment.is_archived %} <span class="badge badge-archived">{% trans "مؤرشفة" %}</span>{% endif %}</dd>
+    <dt>{% trans "ملاحظات" %}</dt><dd>{{ payment.notes|default:"—"|linebreaksbr }}</dd>
+    <dt>{% trans "تاريخ التسجيل" %}</dt><dd>{{ payment.created_at|date:"Y/m/d H:i" }}</dd>
+  </dl>
+</section>
+{% endblock %}

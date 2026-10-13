@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load hifaya_tags service_tags %}
+{% block title %}{% trans "المدفوعات | حفاية" %}{% endblock %}
+{% block heading %}{% trans "المدفوعات" %}{% endblock %}
+{% block content %}
+<div class="toolbar">
+  <a class="btn" href="{% url 'payments:create' %}">➕ {% trans "تسجيل دفعة" %}</a>
+  <a class="btn btn-outline" href="{% url 'payments:import' %}">📥 {% trans "استيراد" %} JSON</a>
+</div>
+{% if review_count %}
+<div class="notice unread">🔎 {% trans "لديك" %} <b>{{ review_count }}</b> {% trans "دفعة تحتاج إلى مراجعة (دفعات متشابهة وفق قواعد واضحة، وليست احتيالًا مؤكدًا)." %} <a href="?review=on">{% trans "اعرضها" %}</a></div>
+{% endif %}
+
+<form method="get" class="card filters" aria-label="{% trans 'البحث والتصفية' %}">
+  <div class="form-grid">
+    {% for field in form %}{% include "partials/_field.html" with field=field %}{% endfor %}
+  </div>
+  <div class="toolbar">
+    <button class="btn btn-sm" type="submit">🔍 {% trans "بحث وتصفية" %}</button>
+    <a class="btn btn-outline btn-sm" href="{% url 'payments:list' %}">{% trans "مسح" %}</a>
+  </div>
+</form>
+
+{% if page_obj.object_list %}
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>{% trans "رقم الدفعة" %}</th><th>{% trans "الاشتراك" %}</th><th>{% trans "المبلغ" %}</th><th>{% trans "العملة" %}</th><th>{% trans "تاريخ الدفع" %}</th><th>{% trans "الطريقة / المرجع" %}</th><th>{% trans "الحالة" %}</th><th>{% trans "المراجعة" %}</th><th>{% trans "إجراءات" %}</th></tr>
+    </thead>
+    <tbody>
+    {% for p in page_obj %}
+      <tr>
+        <td><a href="{% url 'payments:detail' p.pk %}">#{{ p.pk }}</a>{% if p.is_archived %} <span class="badge badge-archived">{% trans "مؤرشفة" %}</span>{% endif %}</td>
+        <td>{% if p.subscription %}{% service_icon p.subscription.service_name %} <a href="{% url 'subscriptions:detail' p.subscription.pk %}">{{ p.subscription.service_name }}</a>{% else %}—{% endif %}</td>
+        <td>{{ p.amount|money:p.currency }}</td>
+        <td>{{ p.currency }}</td>
+        <td>{{ p.payment_date|date:"Y/m/d" }}</td>
+        <td>{{ p.payment_method|default:"—" }}{% if p.reference %}<br><span class="help">{{ p.reference }}</span>{% endif %}</td>
+        <td><span class="badge {{ p.status|badge }}">{{ p.get_status_display }}</span></td>
+        <td>{% if p.review_required %}<span class="badge badge-review">{% trans "تحتاج مراجعة" %}</span><br><span class="help">{{ p.review_reason }}</span>{% else %}—{% endif %}</td>
+        <td class="actions"><a class="btn btn-outline btn-sm" href="{% url 'payments:detail' p.pk %}">{% trans "عرض" %}</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% include "partials/_pagination.html" %}
+{% elif has_filters %}
+<div class="card empty"><span class="big" aria-hidden="true">🔎</span><p>{% trans "لا توجد مدفوعات تطابق البحث أو التصفية." %}</p><a class="btn btn-outline" href="{% url 'payments:list' %}">{% trans "مسح التصفية" %}</a></div>
+{% else %}
+<div class="card empty"><span class="big" aria-hidden="true">💳</span><p>{% trans "لا توجد مدفوعات مسجّلة بعد" %}</p><a class="btn" href="{% url 'payments:create' %}">➕ {% trans "سجّل أول دفعة" %}</a></div>
+{% endif %}
+{% endblock %}

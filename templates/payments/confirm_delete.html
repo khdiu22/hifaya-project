@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "حذف دفعة | حفاية" %}{% endblock %}
+{% block heading %}{% trans "تأكيد الحذف النهائي" %}{% endblock %}
+{% block content %}
+<section class="card danger-card">
+  <h2>{% blocktrans with pk=payment.pk %}هل تريد حذف الدفعة #{{ pk }} نهائيًا؟{% endblocktrans %}</h2>
+  <p>⚠️ {% trans "ستُحذف الدفعة من سجلك المالي ولا يمكن التراجع. (لا تؤثر على الاشتراك نفسه.)" %}</p>
+  <form method="post" class="toolbar">
+    {% csrf_token %}
+    <button class="btn btn-danger" type="submit">{% trans "نعم، احذف نهائيًا" %}</button>
+    <a class="btn btn-outline" href="{% url 'payments:detail' payment.pk %}">{% trans "إلغاء" %}</a>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,7 @@
+{
+  "payments": [
+    {"subscription_id": null, "amount": "45.00", "currency": "SAR", "payment_date": "2026-08-01", "payment_method": "Card", "reference": "DEMO-001", "status": "paid", "notes": "sample"},
+    {"subscription_id": null, "amount": "22.00", "currency": "SAR", "payment_date": "2026-09-01", "payment_method": "Apple Pay", "reference": "DEMO-002"},
+    {"subscription_id": null, "amount": "20.00", "currency": "USD", "payment_date": "2026-09-15", "payment_method": "Visa", "reference": "DEMO-003"}
+  ]
+}
