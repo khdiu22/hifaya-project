@@ -1,4 +1,3 @@
-
 # Hifaya (حفاية)
 
 A Django web application that helps **individuals and small businesses** keep all their subscriptions in one place, follow renewal dates, record payments, receive reminders and see simple reports. Capstone project.
@@ -237,6 +236,3 @@ AI assistance (Claude by Anthropic) was used to help generate code, designs and 
 
 ## 20. Git workflow
 Commit after each meaningful step with a clear message (for example `Add Subscription model and migrations`, `Add payments JSON import`). Never commit `.env`, `db.sqlite3` or `venv/` (already ignored). Give the instructor access before submission.
-=======
-# Khadijah-Capstone-Project
-
