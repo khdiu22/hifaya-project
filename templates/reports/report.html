@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load hifaya_tags %}
+{% block title %}{% trans "التقارير | حفاية" %}{% endblock %}
+{% block heading %}{% trans "التقارير" %}{% endblock %}
+{% block content %}
+<form method="get" class="card filters" aria-label="{% trans 'تصفية التقارير' %}">
+  <div class="form-grid">
+    {% for field in form %}{% include "partials/_field.html" with field=field %}{% endfor %}
+  </div>
+  <div class="toolbar">
+    <button class="btn btn-sm" type="submit">📈 {% trans "عرض التقرير" %}</button>
+    <a class="btn btn-outline btn-sm" href="{% url 'reports:index' %}">{% trans "مسح" %}</a>
+  </div>
+  <p class="help">{% trans "الفترة تؤثر على المدفوعات والتجديدات. فلاتر الحالة والتصنيف والاشتراك تُطبَّق أيضًا على المدفوعات المرتبطة بها (والدفعات بلا اشتراك لا تظهر عند استخدامها). المجاميع تُعرض لكل عملة على حدة ولا تُجمع العملات معًا." %}</p>
+</form>
+
+{% if not has_data %}
+<div class="card empty"><span class="big" aria-hidden="true">📊</span><p>{% trans "لا توجد بيانات كافية لعرض التقارير بعد. أضف اشتراكات ومدفوعات أولًا." %}</p><a class="btn" href="{% url 'subscriptions:create' %}">➕ {% trans "أضف اشتراكًا" %}</a></div>
+{% else %}
+<div class="grid grid-2 section">
+  <section class="card featured">
+    <h2>{% trans "التكلفة الشهرية التقديرية (النشطة)" %}</h2>
+    {% for m in monthly_estimates %}<div class="value value-sm">{{ m.amount|money:m.currency }}</div>{% empty %}<p class="help">{% trans "لا توجد اشتراكات نشطة ضمن الفلاتر." %}</p>{% endfor %}
+    <p class="help">{% trans "تُحوَّل الدورات الأسبوعية والربع سنوية والسنوية إلى ما يعادلها شهريًا. القرار الذي تدعمه: هل ميزانيتك الشهرية تتحمل هذه الاشتراكات؟" %}</p>
+  </section>
+  <section class="card">
+    <h2>{% trans "إجمالي المدفوعات «المدفوعة» في الفترة" %}</h2>
+    {% for c in currency_totals %}<div class="value value-sm">{{ c.total|money:c.currency }} <span class="help">{% blocktrans with label=c.label num=c.count %}({{ label }} · {{ num }} دفعة){% endblocktrans %}</span></div>{% empty %}<p class="help">{% trans "لا توجد دفعات مدفوعة ضمن الفلاتر المختارة." %}</p>{% endfor %}
+    <p class="help">{% blocktrans with n=payments_count %}إجمالي الدفعات المطابقة بكل حالاتها: {{ n }}{% endblocktrans %}</p>
+    {% if period_chosen %}<p>{% trans "عدد التجديدات النشطة خلال الفترة:" %} <b>{{ renewals_count }}</b></p>{% else %}<p class="help">{% trans "اختر فترة (من/إلى) لعرض عدد التجديدات خلالها." %}</p>{% endif %}
+  </section>
+</div>
+
+<div class="grid grid-2 section">
+  <section class="card">
+    <h2>{% trans "الاشتراكات حسب الحالة" %}</h2>
+    {% if status_stats %}<div class="table-wrap"><table><thead><tr><th>{% trans "الحالة" %}</th><th>{% trans "العدد" %}</th></tr></thead><tbody>
+      {% for s in status_stats %}<tr><td>{{ s.label }}</td><td>{{ s.total }}</td></tr>{% endfor %}
+    </tbody></table></div>{% else %}<p class="help">{% trans "لا توجد اشتراكات ضمن الفلاتر." %}</p>{% endif %}
+  </section>
+  <section class="card">
+    <h2>{% trans "الاشتراكات حسب التصنيف" %}</h2>
+    {% if category_stats %}<div class="table-wrap"><table><thead><tr><th>{% trans "التصنيف" %}</th><th>{% trans "العدد" %}</th></tr></thead><tbody>
+      {% for c in category_stats %}<tr><td>{{ c.display_name }}</td><td>{{ c.total }}</td></tr>{% endfor %}
+    </tbody></table></div>{% else %}<p class="help">{% trans "لا توجد اشتراكات ضمن الفلاتر." %}</p>{% endif %}
+  </section>
+</div>
+
+<section class="card section">
+  <h2>{% trans "إجمالي المدفوع لكل اشتراك" %}</h2>
+  {% if per_subscription %}<div class="table-wrap"><table><thead><tr><th>{% trans "الاشتراك" %}</th><th>{% trans "عدد الدفعات" %}</th><th>{% trans "الإجمالي" %}</th></tr></thead><tbody>
+    {% for s in per_subscription %}<tr><td><a href="{% url 'subscriptions:detail' s.pk %}">{{ s.service_name }}</a></td><td>{{ s.payments_n }}</td><td>{{ s.total_paid|money:s.currency }}</td></tr>{% endfor %}
+  </tbody></table></div>
+  <p class="help">{% trans "القرار الذي يدعمه: أي اشتراكات تكلّفك أكثر فعليًا فتستحق المراجعة أو الإيقاف." %}</p>
+  {% else %}<p class="help">{% trans "لا توجد دفعات مدفوعة مرتبطة باشتراكات ضمن الفلاتر." %}</p>{% endif %}
+</section>
+
+<section class="card section">
+  <h2>{% trans "ما يحتاج إلى مراجعة" %}</h2>
+  <p>{% trans "دفعات تحتاج إلى مراجعة:" %} <b>{{ review_payments_count }}</b> {% if review_payments_count %}<a href="{% url 'payments:list' %}?review=on">{% trans "اعرضها" %}</a>{% endif %}</p>
+  {% if review_subs %}<div class="table-wrap"><table><thead><tr><th>{% trans "الاشتراك" %}</th><th>{% trans "التجديد المتأخر" %}</th><th>{% trans "السبب" %}</th></tr></thead><tbody>
+    {% for s in review_subs %}<tr><td><a href="{% url 'subscriptions:detail' s.pk %}">{{ s.service_name }}</a></td><td>{{ s.next_renewal_date|date:"Y/m/d" }}</td><td>{% trans "تاريخ التجديد مضى والاشتراك ما زال نشطًا" %}</td></tr>{% endfor %}
+  </tbody></table></div>{% else %}<p class="help">{% trans "لا توجد اشتراكات تحتاج إلى مراجعة." %}</p>{% endif %}
+</section>
+{% endif %}
+{% endblock %}
