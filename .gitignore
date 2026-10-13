@@ -52,3 +52,5 @@ Desktop.ini
 *.tmp
 *.bak
 *.orig
+smtp_check_manual.py
+test_smtp.py
