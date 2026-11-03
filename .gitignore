@@ -53,4 +53,26 @@ Desktop.ini
 *.bak
 *.orig
 smtp_check_manual.py
+# Python
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+
+# Django secrets and private data
+.env
+db.sqlite3
+media/
+staticfiles/
+
+# IDE and system files
+.vscode/
+.idea/
+.DS_Store
+
+
+
+
+
+
 test_smtp.py

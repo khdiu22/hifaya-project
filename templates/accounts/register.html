@@ -1,12 +1,99 @@
 {% extends "base_auth.html" %}
 {% load i18n %}
+{% load static %}
+
 {% block title %}{% trans "إنشاء حساب | حفاية" %}{% endblock %}
-{% block content %}
-<h2>{% trans "إنشاء حساب جديد" %}</h2>
-<form method="post" novalidate>
-  {% csrf_token %}
-  {% include "partials/_form_fields.html" %}
-  <button class="btn btn-block" type="submit">{% trans "إنشاء الحساب" %}</button>
-</form>
-<p class="auth-alt">{% trans "عندك حساب؟" %} <a href="{% url 'accounts:login' %}">{% trans "سجّل دخولك" %}</a></p>
+
+{% block body_class %} auth-split-body{% endblock %}
+
+{# التحكم باللغة والثيم ينتقل إلى داخل قسم النموذج في هذه الصفحة #}
+{% block auth_top %}{% endblock %}
+
+{% block auth_main %}
+<main class="auth-split">
+
+  {# القسم الأول: مقدمة حفاية والصورة #}
+  <aside class="auth-split__hero">
+    <div class="auth-split__brand">
+      <img src="{% static 'img/logo.png' %}" alt="{% trans 'شعار حفاية' %}" width="52" height="52">
+      <strong>حفاية <span>| Hifaya</span></strong>
+    </div>
+
+    <div class="auth-split__copy">
+      <h1>{% trans "ابدأ رحلتك مع حفاية" %}</h1>
+      <p class="auth-split__lead">
+        {% trans "أنشئ حسابك في أقل من دقيقة، وخلّ كل اشتراكاتك ومدفوعاتك ومواعيد تجديدها في مكان واحد." %}
+      </p>
+      <p class="auth-split__motto">{% trans "حقك ما يضيع." %}</p>
+      <p class="auth-split__support">
+        {% trans "حفاية تساعدك على متابعة اشتراكاتك ومدفوعاتك وتذكّرك بمواعيد التجديد، عشان تكون دائمًا على اطلاع." %}
+      </p>
+    </div>
+
+    <img class="auth-split__art" src="{% static 'img/login-hero.svg' %}"
+         alt="{% trans 'رسم توضيحي يجمع الاشتراكات وتقويم التجديد والتذكيرات والمدفوعات والحماية في مكان واحد' %}"
+         width="560" height="440">
+  </aside>
+
+  {# القسم الثاني: نموذج إنشاء الحساب #}
+  <section class="auth-split__form">
+    <div class="auth-split__tools">
+      {% include "partials/_language_switch.html" %}
+      {% include "partials/_theme_toggle.html" %}
+    </div>
+
+    <div class="auth-split__panel">
+      <div class="auth-split__mbrand">
+        <img src="{% static 'img/logo.png' %}" alt="{% trans 'شعار حفاية' %}" width="46" height="46">
+        <strong>حفاية <span>| Hifaya</span></strong>
+      </div>
+
+      {% include "partials/_messages.html" %}
+
+      <h2>{% trans "إنشاء حساب جديد" %}</h2>
+      <p class="auth-split__sub">{% trans "سجّل بياناتك وابدأ إدارة اشتراكاتك بسهولة" %}</p>
+
+      <form method="post" novalidate id="registerForm">
+        {% csrf_token %}
+        {% include "partials/_form_fields.html" %}
+        <button class="btn btn-block" type="submit">
+          {% trans "إنشاء الحساب" %}
+        </button>
+      </form>
+
+      <p class="auth-alt">
+        {% trans "عندك حساب؟" %}
+        <a href="{% url 'accounts:login' %}">
+          {% trans "سجّل دخولك" %}
+        </a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+{# إظهار اسم المنشأة فقط إذا نوع الحساب منشأة #}
+<script>
+(function () {
+  var type = document.querySelectorAll('[name="account_type"]');
+  var biz  = document.querySelector('[name="business_name"]');
+  if (!type.length || !biz) return;
+
+  var box = biz.closest('.form-group, .form-field, .field') || biz.parentElement;
+
+  function current() {
+    var checked = document.querySelector('input[name="account_type"]:checked');
+    if (checked) return checked.value;
+    var sel = document.querySelector('select[name="account_type"]');
+    return sel ? sel.value : '';
+  }
+  function sync() {
+    var on = current() === 'business';
+    box.hidden = !on;
+    biz.required = on;
+  }
+  type.forEach(function (el) { el.addEventListener('change', sync); });
+  sync();
+})();
+</script>
 {% endblock %}

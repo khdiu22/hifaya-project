@@ -1,35 +1,71 @@
+
+# استيراد ROUND_HALF_UP للتقريب بالطريقة المعتادة عند الوصول إلى نصف القيمة
+# واستيراد Decimal للتعامل مع الأرقام المالية بدقة
 from decimal import ROUND_HALF_UP, Decimal
 
+# استيراد Sum لحساب مجموع المبالغ داخل استعلامات قاعدة البيانات
 from django.db.models import Sum
 
-# How many billing periods fit in one month.
+
+# معاملات تحويل تكلفة كل دورة فوترة إلى تكلفة شهرية تقديرية
+# أسبوعي: 52 أسبوعًا في السنة مقسومة على 12 شهرًا
+# شهري: المبلغ كما هو
+# ربع سنوي: تقسيم المبلغ على 3 أشهر
+# سنوي: تقسيم المبلغ على 12 شهرًا
 MONTHLY_FACTORS = {
     "weekly": Decimal("52") / Decimal("12"),
     "monthly": Decimal("1"),
     "quarterly": Decimal("1") / Decimal("3"),
     "yearly": Decimal("1") / Decimal("12"),
 }
+
+# تحديد عدد المنازل العشرية للمبلغ النهائي (منزلتان بعد الفاصلة)
 TWO_PLACES = Decimal("0.01")
 
 
+# دالة تحسب التكلفة الشهرية التقديرية للاشتراكات،
+# وتُرجع مجموعًا منفصلًا لكل عملة حتى لا تختلط العملات ببعضها
 def monthly_cost_by_currency(queryset):
-    """Estimated monthly cost of the given subscriptions, one total per currency.
+    """حساب التكلفة الشهرية التقديرية للاشتراكات حسب العملة.
 
-    The database groups and sums the amounts (annotate + Sum) per currency and
-    billing cycle; only those few grouped totals are scaled to a monthly value.
-    Currencies are never mixed and no exchange rate is assumed.
+    تجمع قاعدة البيانات المبالغ حسب العملة ودورة الفوترة باستخدام
+    values و annotate و Sum، ثم تحوّل المجاميع إلى تكلفة شهرية.
+    لا يتم دمج العملات المختلفة ولا استخدام أسعار صرف بينها.
     """
+
+    # تجميع الاشتراكات حسب العملة ودورة الفوترة،
+    # ثم حساب مجموع المبالغ لكل مجموعة داخل قاعدة البيانات
     grouped = (
-        queryset.order_by()
-        .values("currency", "billing_cycle")
-        .annotate(total=Sum("amount"))
-        .order_by("currency", "billing_cycle")
+        queryset.order_by()  # إزالة أي ترتيب سابق قد يؤثر في التجميع
+        .values("currency", "billing_cycle")  # تحديد الحقول التي سيتم التجميع حسبها
+        .annotate(total=Sum("amount"))  # حساب مجموع المبالغ لكل مجموعة
+        .order_by("currency", "billing_cycle")  # ترتيب النتائج حسب العملة ودورة الفوترة
     )
+
+    # قاموس لتجميع التكلفة الشهرية لكل عملة
     totals = {}
+
+    # المرور على كل مجموعة ناتجة من قاعدة البيانات
     for row in grouped:
+
+        # الحصول على معامل التحويل إلى تكلفة شهرية
+        # إذا كانت دورة الفوترة غير موجودة في القاموس، يُستخدم صفر
         factor = MONTHLY_FACTORS.get(row["billing_cycle"], Decimal("0"))
-        totals[row["currency"]] = totals.get(row["currency"], Decimal("0")) + row["total"] * factor
+
+        # إضافة المجموع بعد تحويله إلى تكلفة شهرية للعملة نفسها
+        # وإذا لم تكن العملة موجودة سابقًا، تبدأ قيمتها من صفر
+        totals[row["currency"]] = (
+            totals.get(row["currency"], Decimal("0"))
+            + row["total"] * factor
+        )
+
+    # إرجاع قائمة تحتوي على العملة ومجموع تكلفتها الشهرية،
+    # مع تقريب المبلغ إلى منزلتين عشريتين باستخدام ROUND_HALF_UP
+    # وترتيب النتائج حسب رمز العملة
     return [
-        {"currency": currency, "amount": amount.quantize(TWO_PLACES, rounding=ROUND_HALF_UP)}
+        {
+            "currency": currency,
+            "amount": amount.quantize(TWO_PLACES, rounding=ROUND_HALF_UP),
+        }
         for currency, amount in sorted(totals.items())
     ]

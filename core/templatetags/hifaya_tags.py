@@ -1,59 +1,146 @@
+
+# استيراد gettext_lazy لدعم ترجمة النصوص حسب لغة الموقع
+# الرمز _ يستخدم كاختصار لاستدعاء دالة الترجمة
 from django.utils.translation import gettext_lazy as _
+
+# استيراد date للتحقق من نوع التاريخ والتعامل معه
 from datetime import date
+
+# استيراد Decimal للتعامل الدقيق مع الأرقام المالية
+# InvalidOperation للتعامل مع بعض أخطاء تحويل القيم إلى Decimal
 from decimal import Decimal, InvalidOperation
 
+# استيراد مكتبة القوالب في Django لإنشاء فلاتر مخصصة
 from django import template
+
+# استيراد timezone للحصول على تاريخ اليوم حسب إعدادات المشروع
 from django.utils import timezone
 
+
+# إنشاء مكتبة لتسجيل الفلاتر المخصصة واستخدامها داخل قوالب HTML
 register = template.Library()
 
-SYMBOLS = {"SAR": _("ر.س"), "USD": "$", "EUR": "€", "GBP": "£", "AED": _("د.إ")}
 
-BADGES = {
-    "active": "badge-active",
-    "paused": "badge-paused",
-    "cancelled": "badge-cancelled",
-    "archived": "badge-archived",
-    "paid": "badge-active",
-    "pending": "badge-paused",
-    "failed": "badge-cancelled",
-    "refunded": "badge-review",
+# قاموس يربط رمز العملة بالرمز الذي سيظهر للمستخدم
+# _() تسمح بترجمة رموز العملات النصية عند تفعيل الترجمة المناسبة
+SYMBOLS = {
+    "SAR": _("ر.س"),  # الريال السعودي
+    "USD": "$",       # الدولار الأمريكي
+    "EUR": "€",       # اليورو
+    "GBP": "£",       # الجنيه الإسترليني
+    "AED": _("د.إ"),  # الدرهم الإماراتي
 }
 
 
+# قاموس يربط حالات الاشتراكات والمدفوعات بأسماء كلاسات CSS
+# تُستخدم هذه الكلاسات لتنسيق الشارات في واجهة الموقع
+BADGES = {
+    "active": "badge-active",       # اشتراك نشط
+    "paused": "badge-paused",       # اشتراك متوقف مؤقتًا
+    "cancelled": "badge-cancelled", # اشتراك ملغى
+    "archived": "badge-archived",   # اشتراك مؤرشف
+    "paid": "badge-active",         # دفعة مدفوعة، تستخدم تنسيق النشط
+    "pending": "badge-paused",      # دفعة معلقة، تستخدم تنسيق المتوقف
+    "failed": "badge-cancelled",    # دفعة فاشلة، تستخدم تنسيق الإلغاء
+    "refunded": "badge-review",     # دفعة مستردة، تستخدم تنسيق المراجعة
+}
+
+
+# ==========================================
+# الفلتر الأول: تنسيق المبالغ المالية
+# money
+# ==========================================
+
+# تسجيل دالة money كفلتر يمكن استخدامه داخل قوالب Django
 @register.filter
 def money(amount, currency=""):
+    # تنسيق المبلغ المالي وإضافة رمز العملة إليه
+    # مثال: 45 تصبح 45.00 ر.س عند تمرير العملة SAR
+
     """45 -> '45.00 ر.س' (never mixes currencies; always shows its own symbol)."""
+
+    # إذا كانت القيمة None أو نصًا فارغًا، أظهر شرطة بدلًا منها
     if amount is None or amount == "":
         return "—"
+
     try:
+        # تحويل المبلغ إلى Decimal لضمان دقة العمليات والتنسيق المالي
+        # str() يحول القيمة أولًا إلى نص لتجنب بعض مشكلات تحويل الأعداد العشرية
         value = Decimal(str(amount))
+
+    # إذا كانت القيمة لا يمكن تحويلها إلى Decimal بسبب InvalidOperation
+    # أعد القيمة كنص بدلًا من إيقاف عرض الصفحة بهذا الخطأ
     except InvalidOperation:
         return str(amount)
+
+    # تنسيق المبلغ مع فواصل الآلاف ومنزلتين عشريتين
+    # SYMBOLS.get() يبحث عن رمز العملة باستخدام رمز مثل SAR أو USD
+    # إذا لم يوجد الرمز في القاموس، تُستخدم قيمة currency نفسها
+    # strip() يزيل المسافات الزائدة من بداية النص ونهايته
     return f"{value:,.2f} {SYMBOLS.get(currency, currency)}".strip()
 
 
+# ==========================================
+# الفلتر الثاني: عرض موعد التجديد بصيغة سهلة
+# renewal_text
+# ==========================================
+
+# تسجيل دالة renewal_text كفلتر مخصص في قوالب Django
 @register.filter
 def renewal_text(value):
+    # تحويل تاريخ التجديد إلى وصف مفهوم للمستخدم
+    # مثل: اليوم، غدًا، بعد 3 أيام، أو متأخر منذ 4 أيام
+
     """Easy-to-read relative date, e.g. 'بعد 3 أيام'."""
+
+    # التأكد من أن القيمة المدخلة من نوع date أو أحد الأنواع المشتقة منه
+    # إذا لم تكن تاريخًا مناسبًا، أعد شرطة
     if not isinstance(value, date):
         return "—"
+
+    # حساب الفرق بالأيام بين تاريخ التجديد وتاريخ اليوم
+    # القيمة الموجبة تعني أن موعد التجديد في المستقبل
+    # الصفر يعني اليوم، والقيمة السالبة تعني أن الموعد قد مضى
     days = (value - timezone.localdate()).days
+
+    # إذا كان موعد التجديد اليوم
     if days == 0:
         return _("اليوم")
+
+    # إذا كان موعد التجديد غدًا
     if days == 1:
         return _("غدًا")
+
+    # إذا كان موعد التجديد بعد يومين
     if days == 2:
         return _("بعد يومين")
+
+    # إذا كان موعد التجديد بعد 3 إلى 10 أيام
+    # %(days)s مكان مخصص لإدراج عدد الأيام في النص المترجم
     if 3 <= days <= 10:
         return _("بعد %(days)s أيام") % {"days": days}
+
+    # إذا كان موعد التجديد بعد أكثر من 10 أيام
     if days > 10:
         return _("بعد %(days)s يومًا") % {"days": days}
+
+    # إذا كان الموعد بالأمس، أظهر أنه متأخر
     if days == -1:
         return _("أمس (متأخر)")
+
+    # إذا كان الموعد أقدم من الأمس، احسب عدد أيام التأخير
+    # نستخدم -days لتحويل العدد السالب إلى عدد موجب
     return _("متأخر منذ %(v1)s يومًا") % {"v1": -days}
 
 
+# ==========================================
+# الفلتر الثالث: تحديد تنسيق الشارة
+# badge
+# ==========================================
+
+# تسجيل دالة badge كفلتر مخصص في قوالب Django
 @register.filter
 def badge(value):
+    # البحث عن اسم كلاس CSS المناسب للحالة المدخلة
+    # إذا كانت الحالة غير موجودة في القاموس، استخدم badge-review
     return BADGES.get(value, "badge-review")

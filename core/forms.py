@@ -2,7 +2,7 @@ from django import forms
 
 
 def date_field(label, required=False):
-    """HTML5 date input without JavaScript; always parsed as YYYY-MM-DD."""
+   #حقل تاريخ بصيغه ثابته  YYYY-MM-DD
     return forms.DateField(
         label=label,
         required=required,

@@ -1,5 +1,8 @@
-{% load i18n %}{% load static %}<!DOCTYPE html>
-{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
 <html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" data-theme="{{ theme }}">
 <head>
   <meta charset="utf-8">
@@ -12,30 +15,46 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<body class="auth-body">
+<body class="auth-body{% block body_class %}{% endblock %}">
   <div class="auth-wrap">
 
+    {% block auth_top %}
     <div class="auth-top">
       {% include "partials/_language_switch.html" %}
       {% include "partials/_theme_toggle.html" %}
     </div>
+    {% endblock %}
 
-    <main class="auth-card">
-      {% include "partials/_messages.html" %}
-      <div class="auth-brand">
+    {% block auth_main %}
+    <main class="auth-layout">
+
+      <aside class="auth-brand">
         <img src="{% static 'img/logo.png' %}" alt="{% trans 'شعار حفاية' %}">
 
         <h1>
           حفاية <small>Hifaya</small>
         </h1>
 
-        <p>{% trans "اشتراكاتك ومدفوعاتك في مكان واحد وتحت حمايتك" %} </p>
-      </div>
+        <p>
+          {% trans "اشتراكاتك ومدفوعاتك في مكان واحد وتحت حمايتك" %}
+        </p>
 
-      {% block content %}{% endblock %}
+        <div class="auth-brand-description">
+          <h2>{% trans "كل اشتراكاتك في مكان واحد" %}</h2>
+          <p>
+            {% trans "تابعي اشتراكاتك ومدفوعاتك، ونظّمي أمورك المالية بسهولة وأمان." %}
+          </p>
+        </div>
+      </aside>
+
+      <section class="auth-card">
+        {% include "partials/_messages.html" %}
+        {% block content %}{% endblock %}
+      </section>
+
     </main>
+    {% endblock %}
 
-    <!-- Hifaya Footer -->
     <footer class="site-footer auth-footer">
       <div class="footer-brand">
         <img src="{% static 'img/logo.png' %}" alt="{% trans 'شعار حفاية' %}">
@@ -49,6 +68,7 @@
         {% trans "جميع الحقوق محفوظة" %} © 2026
       </p>
     </footer>
+
   </div>
 </body>
 </html>
